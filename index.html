@@ -1,0 +1,2446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Islam Md Hujaifa — Machine Learning Engineer</title>
+<meta name="description" content="Machine Learning Engineer specializing in LLM agents, RAG systems, and fine-tuning. Based in Saitama, Japan." />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Shippori+Mincho+B1:wght@400;500;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<style>
+/* ===== Base ===== */
+:root {
+  --ink: #0b0b0c;
+  --sumi: #131316;
+  --soot: #1b1b1f;
+  --line: #26262b;
+  --line-soft: #1d1d22;
+  --washi: #ece6d6;
+  --washi-soft: #d6cfbf;
+  --ash: #8c8a83;
+  --ash-soft: #5f5e58;
+  --shu: #c8362e;
+  --shu-bright: #e04a3f;
+  --shu-dim: #8a2a25;
+  --gold: #c9a961;
+  --gold-dim: #8a7541;
+
+  --serif: 'Fraunces', 'Times New Roman', serif;
+  --jp: 'Shippori Mincho B1', 'Yu Mincho', serif;
+  --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--ink);
+  color: var(--washi);
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01", "ss02";
+}
+
+/* Subtle paper grain over everything */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.04;
+  background-image:
+    radial-gradient(circle at 25% 30%, var(--washi) 0.5px, transparent 0.6px),
+    radial-gradient(circle at 75% 70%, var(--washi) 0.4px, transparent 0.5px),
+    radial-gradient(circle at 50% 50%, var(--washi) 0.3px, transparent 0.4px);
+  background-size: 3px 3px, 5px 5px, 7px 7px;
+  mix-blend-mode: overlay;
+}
+
+/* Cursor glow */
+.cursor-glow {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200, 54, 46, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s;
+  mix-blend-mode: screen;
+}
+
+::selection { background: var(--shu); color: var(--washi); }
+
+/* ===== Nav ===== */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(11, 11, 12, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s, padding 0.3s;
+}
+.nav.scrolled { border-bottom-color: var(--line-soft); padding: 1rem 3rem; }
+.nav-logo {
+  font-family: var(--jp);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--washi);
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.nav-logo .dot {
+  width: 6px; height: 6px;
+  background: var(--shu);
+  border-radius: 50%;
+  display: inline-block;
+}
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.nav-links a {
+  color: var(--ash);
+  text-decoration: none;
+  transition: color 0.2s;
+  position: relative;
+  padding-bottom: 4px;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 1px;
+  width: 0;
+  background: var(--shu);
+  transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--washi); }
+.nav-links a:hover::after { width: 100%; }
+.nav-mobile-toggle { display: none; background: none; border: none; color: var(--washi); cursor: pointer; font-size: 1.4rem; }
+
+/* ===== Hero ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 8rem 3rem 4rem;
+  overflow: hidden;
+}
+.hero-kanji-bg {
+  position: absolute;
+  font-family: var(--jp);
+  font-weight: 800;
+  font-size: clamp(20rem, 35vw, 40rem);
+  color: var(--soot);
+  top: 50%;
+  right: -8%;
+  transform: translateY(-50%);
+  user-select: none;
+  line-height: 0.85;
+  z-index: 0;
+  letter-spacing: -0.05em;
+  opacity: 0.85;
+}
+.hero-content {
+  position: relative;
+  z-index: 5;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+.hero-left { position: relative; }
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  color: var(--shu);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.8rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s forwards;
+}
+.hero-eyebrow .line {
+  width: 40px;
+  height: 1px;
+  background: var(--shu);
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--washi);
+  margin-bottom: 0.8rem;
+  font-variation-settings: 'opsz' 144;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.35s forwards;
+}
+.hero h1 .first { font-style: normal; font-weight: 300; display: block; }
+.hero h1 .last { font-style: italic; font-weight: 500; display: block; color: var(--washi); }
+.hero h1 .jp {
+  display: block;
+  font-family: var(--jp);
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: 0.4em;
+  color: var(--ash);
+  margin-top: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.hero-role {
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  color: var(--washi-soft);
+  letter-spacing: 0.05em;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.5s forwards;
+}
+.hero-role .sep { color: var(--shu); margin: 0 0.6rem; }
+.hero-bio {
+  font-size: 1.05rem;
+  color: var(--washi-soft);
+  line-height: 1.75;
+  max-width: 520px;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.65s forwards;
+}
+.hero-bio .accent { color: var(--washi); font-style: italic; font-family: var(--serif); }
+.hero-bio .jp-inline { font-family: var(--jp); color: var(--shu); font-weight: 500; }
+.hero-meta {
+  display: flex;
+  gap: 2.5rem;
+  margin-bottom: 2.5rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--ash);
+  opacity: 0;
+  animation: fadeUp 0.9s 0.8s forwards;
+}
+.hero-meta div { display: flex; flex-direction: column; gap: 0.3rem; }
+.hero-meta .label { color: var(--ash-soft); text-transform: uppercase; font-size: 0.7rem; }
+.hero-meta .value { color: var(--washi); }
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.95s forwards;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.8rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--line);
+  color: var(--washi);
+  background: transparent;
+  transition: all 0.3s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: var(--shu);
+  transition: left 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  z-index: -1;
+}
+.btn:hover { border-color: var(--shu); }
+.btn:hover::before { left: 0; }
+.btn-primary { background: var(--shu); border-color: var(--shu); }
+.btn-primary::before { background: var(--washi); }
+.btn-primary:hover { color: var(--ink); }
+.btn svg { width: 14px; height: 14px; }
+
+/* Hero right — photo with hanging-scroll treatment */
+.hero-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.scroll-frame {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  opacity: 0;
+  animation: fadeIn 1.2s 0.5s forwards;
+}
+.scroll-frame::before, .scroll-frame::after {
+  content: '';
+  position: absolute;
+  left: -15px; right: -15px;
+  height: 14px;
+  background: linear-gradient(180deg, var(--soot) 0%, var(--sumi) 100%);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.scroll-frame::before { top: -14px; }
+.scroll-frame::after { bottom: -14px; }
+.photo-container {
+  position: relative;
+  aspect-ratio: 4/5;
+  background: linear-gradient(135deg, var(--sumi) 0%, var(--soot) 100%);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+.photo-container img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  filter: grayscale(20%) contrast(1.05);
+  transition: filter 0.5s;
+  z-index: 2;
+}
+.photo-container:hover img { filter: grayscale(0%) contrast(1.1); }
+.photo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--jp);
+  font-size: 4rem;
+  color: var(--ash-soft);
+  font-weight: 300;
+  text-align: center;
+  padding: 2rem;
+  z-index: 1;
+}
+.photo-placeholder small {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--ash-soft);
+  text-transform: uppercase;
+  margin-top: 1rem;
+  font-weight: 400;
+}
+.hanko {
+  position: absolute;
+  bottom: -25px;
+  right: -25px;
+  width: 75px;
+  height: 75px;
+  background: var(--shu);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--jp);
+  color: var(--washi);
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  transform: rotate(-4deg);
+  box-shadow: 0 4px 20px rgba(200, 54, 46, 0.4);
+  z-index: 2;
+}
+.hanko::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1.5px solid var(--washi);
+}
+
+.vertical-text {
+  position: absolute;
+  right: -3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  font-family: var(--jp);
+  font-size: 0.85rem;
+  letter-spacing: 0.5em;
+  color: var(--ash-soft);
+  opacity: 0;
+  animation: fadeIn 1.5s 1s forwards;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--ash);
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  opacity: 0;
+  animation: fadeIn 1.5s 1.5s forwards;
+}
+.scroll-indicator .line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--shu), transparent);
+  animation: scrollPulse 2s infinite;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(1); opacity: 1; }
+  50% { transform: scaleY(0.5); opacity: 0.3; }
+}
+
+/* ===== Section Base ===== */
+section { padding: 8rem 3rem; position: relative; z-index: 5; }
+.section-inner { max-width: 1300px; margin: 0 auto; position: relative; }
+.section-header {
+  margin-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+}
+.section-num {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  color: var(--shu);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.section-num .line { width: 40px; height: 1px; background: var(--shu); }
+.section-num .jp { font-family: var(--jp); letter-spacing: 0.2em; color: var(--ash); margin-left: 0.5rem; }
+
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--washi);
+  max-width: 900px;
+  font-variation-settings: 'opsz' 144;
+}
+.section-title em { font-style: italic; font-weight: 500; color: var(--washi-soft); }
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--ash);
+  max-width: 600px;
+  line-height: 1.7;
+  margin-top: 1rem;
+  font-weight: 300;
+}
+
+/* Decorative ornament */
+.ornament {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--ash-soft);
+  margin: 4rem 0;
+}
+.ornament .line { flex: 1; height: 1px; background: var(--line); }
+.ornament .glyph {
+  font-family: var(--jp);
+  font-size: 1rem;
+  color: var(--shu);
+}
+
+/* ===== About ===== */
+#about { background: var(--ink); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.about-text p {
+  font-size: 1.08rem;
+  line-height: 1.85;
+  color: var(--washi-soft);
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+.about-text p strong {
+  color: var(--washi);
+  font-weight: 500;
+}
+.about-text .quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--washi);
+  border-left: 2px solid var(--shu);
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  margin: 2rem 0;
+  font-weight: 400;
+  font-variation-settings: 'opsz' 24;
+}
+.about-text .quote .jp {
+  display: block;
+  font-family: var(--jp);
+  font-size: 0.95rem;
+  color: var(--ash);
+  margin-top: 0.6rem;
+  font-style: normal;
+  letter-spacing: 0.2em;
+}
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--line);
+}
+.stat {
+  padding: 2rem 1.5rem;
+  border-right: 1px solid var(--line);
+  position: relative;
+  transition: background 0.3s;
+}
+.stat:last-child { border-right: none; }
+.stat:hover { background: var(--sumi); }
+.stat-num {
+  font-family: var(--serif);
+  font-size: 3.5rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--washi);
+  margin-bottom: 0.5rem;
+  font-variation-settings: 'opsz' 144;
+}
+.stat-num sup { font-size: 1.2rem; color: var(--shu); font-weight: 500; }
+.stat-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--ash);
+  text-transform: uppercase;
+}
+.stat-jp {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-family: var(--jp);
+  font-size: 0.7rem;
+  color: var(--ash-soft);
+  letter-spacing: 0.2em;
+}
+
+/* ===== Experience ===== */
+#experience { background: var(--sumi); }
+.timeline {
+  position: relative;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.tl-item {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 3rem;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  transition: background 0.3s;
+}
+.tl-item:last-child { border-bottom: none; }
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: 200px;
+  top: 3rem;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--shu);
+  transform: translateX(-50%);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.tl-item:hover::before {
+  transform: translateX(-50%) scale(1.4);
+  box-shadow: 0 0 0 8px rgba(200, 54, 46, 0.15);
+}
+.tl-date {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--ash);
+  letter-spacing: 0.1em;
+  padding-top: 0.4rem;
+}
+.tl-date .duration {
+  display: block;
+  margin-top: 0.4rem;
+  color: var(--ash-soft);
+  font-size: 0.72rem;
+}
+.tl-content { padding-left: 2rem; }
+.tl-role {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--washi);
+  margin-bottom: 0.3rem;
+  font-variation-settings: 'opsz' 48;
+}
+.tl-role em { font-style: italic; color: var(--washi-soft); }
+.tl-company {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--shu);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.tl-content ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.tl-content li {
+  position: relative;
+  padding-left: 1.5rem;
+  color: var(--washi-soft);
+  font-weight: 300;
+  line-height: 1.7;
+  font-size: 0.98rem;
+}
+.tl-content li::before {
+  content: '─';
+  position: absolute;
+  left: 0;
+  color: var(--shu);
+  font-family: var(--mono);
+}
+.tl-tags {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.tl-tag {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--ash);
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--line);
+  text-transform: uppercase;
+}
+
+/* ===== Projects (unified) ===== */
+#work { background: var(--ink); }
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem 3rem;
+}
+.work-card {
+  display: flex;
+  flex-direction: column;
+}
+.work-visual {
+  position: relative;
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, var(--sumi) 0%, var(--soot) 100%);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  margin-bottom: 1.8rem;
+  transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1), border-color 0.3s;
+}
+.work-card:hover .work-visual {
+  transform: translateY(-6px);
+  border-color: var(--ash-soft);
+}
+/* Fallback (kanji + tags) — sits BEHIND any image/video */
+.work-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.work-fallback::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(45deg, transparent 48%, var(--line-soft) 49%, var(--line-soft) 51%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, var(--line-soft) 49%, var(--line-soft) 51%, transparent 52%);
+  background-size: 60px 60px;
+  opacity: 0.4;
+}
+.work-fallback::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(11, 11, 12, 0.7) 100%);
+}
+.work-kanji {
+  position: relative;
+  font-family: var(--jp);
+  font-size: 6rem;
+  font-weight: 800;
+  color: var(--washi);
+  opacity: 0.15;
+  z-index: 2;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.work-overlay {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  text-align: center;
+  padding: 1.5rem;
+}
+.work-icon {
+  width: 50px;
+  height: 50px;
+  border: 1px solid var(--shu);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(11, 11, 12, 0.6);
+  backdrop-filter: blur(10px);
+}
+.work-icon svg { width: 24px; height: 24px; color: var(--shu); }
+.work-overlay-title {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--washi);
+  font-weight: 400;
+}
+.work-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.work-tag {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--washi-soft);
+  letter-spacing: 0.1em;
+  padding: 0.25rem 0.6rem;
+  background: rgba(11, 11, 12, 0.5);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+}
+/* Actual media (img or video) — sits ON TOP of the fallback */
+.work-visual img,
+.work-visual video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 4;
+  background: var(--sumi);
+}
+.work-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.work-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  color: var(--shu);
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.work-eyebrow .num {
+  font-family: var(--jp);
+  font-size: 0.85rem;
+  color: var(--ash);
+  letter-spacing: 0.1em;
+}
+.work-title {
+  font-family: var(--serif);
+  font-size: 1.7rem;
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--washi);
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  font-variation-settings: 'opsz' 48;
+}
+.work-desc {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--washi-soft);
+  margin-bottom: 1.2rem;
+  font-weight: 300;
+  flex: 1;
+}
+.work-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.work-stack span {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--ash);
+  letter-spacing: 0.04em;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--line);
+  transition: all 0.2s;
+}
+.work-stack span:hover { border-color: var(--shu); color: var(--washi); }
+.work-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--washi);
+  text-decoration: none;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--shu);
+  transition: gap 0.3s, color 0.3s;
+  align-self: flex-start;
+}
+.work-link:hover { gap: 1rem; color: var(--shu-bright); }
+.work-link svg { width: 12px; height: 12px; transition: transform 0.3s; }
+.work-link:hover svg { transform: translate(2px, -2px); }
+.work-more {
+  margin-top: 5rem;
+  text-align: center;
+  font-family: var(--mono);
+  color: var(--ash);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+.work-more a {
+  color: var(--shu);
+  text-decoration: none;
+  border-bottom: 1px solid var(--shu);
+  padding-bottom: 2px;
+  margin-left: 0.4rem;
+  transition: color 0.3s;
+}
+.work-more a:hover { color: var(--shu-bright); }
+
+/* ===== Research / Publications ===== */
+#research { background: var(--sumi); }
+.pub-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem 3rem;
+}
+.pub-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+.pub-visual {
+  position: relative;
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, var(--sumi) 0%, var(--soot) 100%);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  margin-bottom: 1.8rem;
+  transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1), border-color 0.3s;
+}
+.pub-card:hover .pub-visual {
+  transform: translateY(-6px);
+  border-color: var(--ash-soft);
+}
+/* Fallback (kanji + label) — sits BEHIND any image */
+.pub-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.pub-fallback::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(45deg, transparent 48%, var(--line-soft) 49%, var(--line-soft) 51%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, var(--line-soft) 49%, var(--line-soft) 51%, transparent 52%);
+  background-size: 60px 60px;
+  opacity: 0.4;
+}
+.pub-fallback::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(11, 11, 12, 0.7) 100%);
+}
+.pub-kanji {
+  position: relative;
+  font-family: var(--jp);
+  font-size: 6rem;
+  font-weight: 800;
+  color: var(--washi);
+  opacity: 0.15;
+  z-index: 2;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.pub-overlay {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  text-align: center;
+  padding: 1.5rem;
+}
+.pub-overlay-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--shu);
+  text-transform: uppercase;
+  padding: 0.4rem 0.9rem;
+  background: rgba(11, 11, 12, 0.6);
+  border: 1px solid var(--shu);
+  backdrop-filter: blur(10px);
+}
+.pub-overlay-caption {
+  font-family: var(--jp);
+  font-size: 0.85rem;
+  color: var(--washi-soft);
+  letter-spacing: 0.2em;
+}
+/* Actual media on top of fallback */
+.pub-visual img,
+.pub-visual video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 4;
+  background: var(--sumi);
+}
+.pub-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.pub-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+.pub-year {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--shu);
+  font-variation-settings: 'opsz' 48;
+  font-style: italic;
+  line-height: 1;
+}
+.pub-venue {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--ash);
+  text-transform: uppercase;
+}
+.pub-title {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--washi);
+  line-height: 1.3;
+  font-variation-settings: 'opsz' 32;
+  margin: 0.3rem 0 0.8rem;
+}
+.pub-title em { font-style: italic; color: var(--washi-soft); }
+.pub-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--washi);
+  text-decoration: none;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--shu);
+  transition: gap 0.3s, color 0.3s;
+  align-self: flex-start;
+}
+.pub-link:hover { gap: 1rem; color: var(--shu-bright); }
+.pub-link svg { width: 12px; height: 12px; transition: transform 0.3s; }
+.pub-link:hover svg { transform: translate(2px, -2px); }
+
+/* ===== Skills ===== */
+#skills { background: var(--sumi); }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border: 1px solid var(--line);
+}
+.skill-block {
+  padding: 2.5rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  transition: background 0.3s;
+}
+.skill-block:nth-child(2n) { border-right: none; }
+.skill-block:nth-last-child(-n+2) { border-bottom: none; }
+.skill-block:hover { background: var(--ink); }
+.skill-num {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--ash-soft);
+  letter-spacing: 0.2em;
+}
+.skill-title {
+  font-family: var(--jp);
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  color: var(--shu);
+  margin-bottom: 0.3rem;
+}
+.skill-title-en {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--washi);
+  margin-bottom: 1.5rem;
+  font-variation-settings: 'opsz' 48;
+  font-style: italic;
+}
+.skill-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.skill-item {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--washi-soft);
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--line);
+  letter-spacing: 0.02em;
+  transition: all 0.2s;
+}
+.skill-item:hover {
+  border-color: var(--shu);
+  color: var(--washi);
+  background: rgba(200, 54, 46, 0.05);
+}
+
+/* ===== Education / Languages combo ===== */
+#background { background: var(--ink); }
+.bg-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 5rem;
+}
+.edu-card {
+  border-left: 2px solid var(--shu);
+  padding: 1rem 0 1rem 2rem;
+}
+.edu-degree {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--washi);
+  margin-bottom: 0.3rem;
+  font-variation-settings: 'opsz' 48;
+}
+.edu-degree em { font-style: italic; }
+.edu-school {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--washi-soft);
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+.edu-meta {
+  display: flex;
+  gap: 2rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--ash);
+  letter-spacing: 0.1em;
+}
+.edu-meta strong { color: var(--shu); font-weight: 500; }
+
+.cert-list {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.cert-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.95rem;
+  color: var(--washi-soft);
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--line-soft);
+  font-weight: 300;
+}
+.cert-item::before {
+  content: '◇';
+  color: var(--shu);
+  font-size: 0.8rem;
+}
+
+/* Languages */
+.lang-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.lang-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: end;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line-soft);
+}
+.lang-name {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  color: var(--washi);
+  font-variation-settings: 'opsz' 32;
+}
+.lang-name .native {
+  display: block;
+  font-family: var(--jp);
+  font-size: 0.9rem;
+  color: var(--ash);
+  letter-spacing: 0.1em;
+  margin-top: 0.2rem;
+  font-style: normal;
+}
+.lang-level {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  color: var(--shu);
+  text-transform: uppercase;
+  text-align: right;
+}
+.lang-level .sub {
+  display: block;
+  color: var(--ash);
+  font-size: 0.7rem;
+  margin-top: 0.2rem;
+}
+.lang-bar {
+  height: 1px;
+  background: var(--line);
+  margin-top: 0.8rem;
+  grid-column: 1/-1;
+  position: relative;
+  overflow: hidden;
+}
+.lang-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--shu);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.lang-item.in-view .lang-bar::after { transform: scaleX(var(--level)); }
+
+/* ===== Contact ===== */
+#contact {
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+#contact::before {
+  content: '邂逅';
+  position: absolute;
+  font-family: var(--jp);
+  font-weight: 800;
+  font-size: 30rem;
+  color: var(--soot);
+  top: 50%;
+  left: -10%;
+  transform: translateY(-50%);
+  z-index: 0;
+  user-select: none;
+  opacity: 0.6;
+  line-height: 0.85;
+}
+.contact-inner { position: relative; z-index: 2; }
+.contact-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+.contact-eyebrow {
+  font-family: var(--jp);
+  font-size: 1rem;
+  letter-spacing: 0.5em;
+  color: var(--shu);
+  margin-bottom: 1.5rem;
+}
+.contact-title {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 300;
+  line-height: 1;
+  color: var(--washi);
+  letter-spacing: -0.03em;
+  font-variation-settings: 'opsz' 144;
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+}
+.contact-title em { font-style: italic; color: var(--shu); }
+.contact-sub {
+  font-size: 1.1rem;
+  color: var(--washi-soft);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+  font-weight: 300;
+}
+.contact-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1px;
+  max-width: 1000px;
+  margin: 0 auto;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.contact-card {
+  background: var(--ink);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.3s;
+  cursor: pointer;
+  position: relative;
+}
+.contact-card:hover { background: var(--sumi); }
+.contact-icon {
+  width: 36px; height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--shu);
+  margin-bottom: 0.5rem;
+}
+.contact-icon svg { width: 22px; height: 22px; }
+.contact-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--ash);
+  text-transform: uppercase;
+}
+.contact-value {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--washi);
+  font-style: italic;
+  font-variation-settings: 'opsz' 32;
+  word-break: break-all;
+}
+.contact-arrow {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  color: var(--ash);
+}
+.contact-card:hover .contact-arrow {
+  opacity: 1;
+  transform: translate(2px, -2px);
+  color: var(--shu);
+}
+.contact-arrow svg { width: 16px; height: 16px; }
+.copy-toast {
+  position: absolute;
+  bottom: 1rem; right: 1rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--shu);
+  letter-spacing: 0.15em;
+  opacity: 0;
+  transition: opacity 0.3s;
+  text-transform: uppercase;
+}
+.copy-toast.show { opacity: 1; }
+
+/* ===== Footer ===== */
+footer {
+  padding: 3rem;
+  border-top: 1px solid var(--line);
+  background: var(--ink);
+  position: relative;
+  z-index: 5;
+}
+.footer-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--ash);
+}
+.footer-inner .jp { font-family: var(--jp); color: var(--ash-soft); }
+.footer-inner .heart { color: var(--shu); }
+
+/* ===== Reveal Animation ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.9s cubic-bezier(0.65, 0, 0.35, 1), transform 0.9s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal[data-delay="100"] { transition-delay: 100ms; }
+.reveal[data-delay="200"] { transition-delay: 200ms; }
+.reveal[data-delay="300"] { transition-delay: 300ms; }
+.reveal[data-delay="400"] { transition-delay: 400ms; }
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .hero-content, .bg-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .work-grid, .pub-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .hero-kanji-bg { font-size: clamp(15rem, 30vw, 25rem); right: -5%; }
+  .vertical-text { display: none; }
+  .scroll-frame { max-width: 320px; margin: 0 auto; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .skill-block { border-right: none; }
+  .skill-block:nth-last-child(2) { border-bottom: 1px solid var(--line); }
+  /* Stats: 4 cols → 2x2 on tablet */
+  .about-stats { grid-template-columns: repeat(2, 1fr); }
+  .stat { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .stat:last-child { border-right: 1px solid var(--line); }
+  .stat:nth-child(2n) { border-right: none; }
+  .stat:nth-last-child(-n+2) { border-bottom: none; }
+}
+@media (max-width: 768px) {
+  .nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .nav-mobile-toggle { display: block; }
+  .nav-links.mobile-open {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    background: var(--ink);
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+  section { padding: 5rem 1.5rem; }
+  .hero { padding: 7rem 1.5rem 4rem; }
+  .hero-meta { flex-wrap: wrap; gap: 1.5rem; }
+  .tl-item { grid-template-columns: 1fr; gap: 1rem; padding: 2rem 0; }
+  .tl-item::before { display: none; }
+  .tl-content { padding-left: 0; border-left: 2px solid var(--shu); padding-left: 1.5rem; }
+  /* Stats: stacked on phone */
+  .about-stats { grid-template-columns: 1fr; }
+  .stat { border-right: none !important; border-bottom: 1px solid var(--line) !important; }
+  .stat:last-child { border-bottom: none !important; }
+  .stat-num { font-size: 2.5rem; }
+  .work-title, .pub-title, .section-title { font-size: 1.8rem; }
+  .work-kanji, .pub-kanji { font-size: 4.5rem; }
+  .hero-kanji-bg { font-size: 13rem; opacity: 0.6; }
+  .cursor-glow { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- Nav -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">匠<span class="dot"></span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-mobile-toggle" id="navToggle" aria-label="Menu">≡</button>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-kanji-bg" aria-hidden="true">知</div>
+
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="line"></span>
+        <span>Available for opportunities in Japan</span>
+      </div>
+      <h1>
+        <span class="first">Islam Md</span>
+        <span class="last">Hujaifa.</span>
+        <span class="jp">イスラム・エムディ・フジャイファ</span>
+      </h1>
+      <div class="hero-role">
+        ML/AI Engineer <span class="sep">/</span> Data Scientist <span class="sep">/</span> Generative AI Engineer
+      </div>
+      <p class="hero-bio">
+        A committed and disciplined individual leveraging AI to push the boundaries of creative expression, specializing in <span class="accent">traditional AI</span> techniques and <span class="accent">Generative AI</span> to build RAG pipelines, LLM agents, and fine-tune models. Equally effective independently or as part of a team. With strong ties to Japan and a passion for innovation, currently living in Saitama aspiring to build a long-term career in Japan <span class="jp-inline">日本</span>.
+      </p>
+
+      <div class="hero-meta">
+        <div>
+          <span class="label">Based in</span>
+          <span class="value">Kawagoeshi, Saitama</span>
+        </div>
+        <div>
+          <span class="label">Status</span>
+          <span class="value">Open to roles</span>
+        </div>
+        <div>
+          <span class="label">JLPT</span>
+          <span class="value">N3 · Conversational</span>
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <a href="#work" class="btn btn-primary">
+          See the work
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#contact" class="btn">
+          Get in touch
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <span class="vertical-text">機械学習エンジニア</span>
+      <div class="scroll-frame">
+        <div class="photo-container">
+          <!-- Fallback shown only if image fails / not present -->
+          <div class="photo-placeholder">
+            匠
+            <small>Replace with photo</small>
+          </div>
+          <img src="images/picture.jpg" alt="Islam Md Hujaifa" />
+        </div>
+        <div class="hanko" aria-label="Personal seal">匠</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="line"></div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-num">
+        <span class="line"></span>
+        <span>01 / About</span>
+        <span class="jp">— 紹介</span>
+      </div>
+      <h2 class="section-title">A disciplined Engineer, drawn to <em>Artificial Intelligence</em> and a dream to build a long-term career in Japan <span class="jp-inline">日本</span></h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-stats reveal">
+        <div class="stat">
+          <div class="stat-num">3<sup>yrs</sup></div>
+          <div class="stat-label">AI Engineering</div>
+          <div class="stat-jp">経験</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">20<sup>+</sup></div>
+          <div class="stat-label">POCs Shipped</div>
+          <div class="stat-jp">実装</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Publications</div>
+          <div class="stat-jp">論文</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">250<sup>+</sup></div>
+          <div class="stat-label">LeetCode</div>
+          <div class="stat-jp">問題</div>
+        </div>
+      </div>
+
+      <div class="about-text reveal" data-delay="200">
+        <p>
+          I'm an AI engineer with <strong>three years of production experience</strong>, focused on the layer where research-grade techniques meet shippable systems. My day-to-day is <strong>LLM fine-tuning and pretraining</strong>, retrieval pipelines, and building <strong>multi-agent systems with LangGraph, AutoGen, and CrewAI</strong> &mdash; plus the unglamorous engineering work that keeps them from breaking in production.
+        </p>
+        <p>
+          I started at <strong>Next Solution Lab</strong> shipping 20+ generative AI proof-of-concepts, including direct work with <strong>Deloitte Japan</strong>. I then moved to <strong>Silicon Orchard</strong>, where I've spent <strong>the past year working with US-based clients</strong> &mdash; leading small-scale projects end-to-end as <strong>team lead</strong>, mentoring junior engineers, and shipping conversational recommendation, visual search, and Azure-OpenAI SQL generation for an e-commerce platform.
+        </p>
+
+        <div class="quote">
+          "Build slowly, refine deeply, ship with intent."
+          <span class="jp">— 一期一会</span>
+        </div>
+
+        <p>
+          A meaningful slice of my work is also <strong>cloud and infrastructure</strong> &mdash; <strong>Azure Cloud, Azure DevOps, Azure APIs</strong>, model monitoring, and day-to-day server maintenance for the systems we deploy. Production AI isn't just about the model; it's about everything around it.
+        </p>
+        <p>
+          Outside production, I publish. My recent paper <strong>ATLASS</strong> (SOSE 2025) explores closed-loop LLM systems that create and use their own tools. I'm currently working on <strong>TinyAgent</strong> &mdash; fine-tuning small language models for agentic tasks on edge devices.
+        </p>
+        <p>
+          My long-term plan is in Japan. I'm at JLPT N3, studying everyday to improve my Japanese more, and I'm looking for a role where I can grow with a team that cares about advancing humanity through AI.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Experience -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-num">
+        <span class="line"></span>
+        <span>02 / Experience</span>
+        <span class="jp">— 経歴</span>
+      </div>
+      <h2 class="section-title">Three years <em>in production</em>, leading R&amp;D and shipping for clients across Japan and the US.</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-date">
+          12/2024 — <span style="color:var(--shu);">Running</span>
+          <span class="duration">Current role</span>
+        </div>
+        <div class="tl-content">
+          <h3 class="tl-role">Software Engineer <em>— Machine Learning</em></h3>
+          <div class="tl-company">Silicon Orchard Ltd.</div>
+          <ul>
+            <li>Built <strong>Quran Recite AI</strong> using Whisper for transcription and GPT to identify pronunciation and transcription deviations.</li>
+            <li>Leading R&amp;D on <strong>multi-agent systems with AutoGen, LangGraph, and CrewAI</strong> &mdash; pipelines that generate and use external LLM tools based on the user query.</li>
+            <li>Led small-scale projects end-to-end and mentored junior engineers; delivered 3 projects as team lead for US-based clients.</li>
+            <li>Shipped a <strong>conversational recommendation system, visual search, and AI-powered search engine</strong> for USAILighting's LED e-commerce platform.</li>
+            <li>Built an <strong>SQL generator</strong> letting customers query data conversationally via Azure OpenAI; owned policy design and prompt engineering.</li>
+            <li>Architectural floorplan detection using <strong>Graph Neural Networks</strong>.</li>
+            <li>Maintained production deployments on <strong>Azure Cloud</strong> with Azure DevOps pipelines and Azure APIs; handled server monitoring and uptime.</li>
+          </ul>
+          <div class="tl-tags">
+            <span class="tl-tag">AutoGen</span>
+            <span class="tl-tag">LangChain</span>
+            <span class="tl-tag">LangGraph</span>
+            <span class="tl-tag">CrewAI</span>
+            <span class="tl-tag">Multi-Agent System</span>
+            <span class="tl-tag">Azure Cloud</span>
+            <span class="tl-tag">Azure DevOps</span>
+            <span class="tl-tag">Azure API</span>
+            <span class="tl-tag">Azure OpenAI</span>
+            <span class="tl-tag">FastAPI</span>
+            <span class="tl-tag">RAG</span>
+            <span class="tl-tag">GNN</span>
+            <span class="tl-tag">Whisper</span>
+            <span class="tl-tag">Server Monitoring</span>
+            <span class="tl-tag">Team Lead</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-date">
+          07/2023 — 12/2024
+          <span class="duration">~1.5 years</span>
+        </div>
+        <div class="tl-content">
+          <h3 class="tl-role">AI Engineer</h3>
+          <div class="tl-company">Next Solution Lab</div>
+          <ul>
+            <li>R&amp;D on LLMs &mdash; developed <strong>20+ proof-of-concept generative AI applications</strong>.</li>
+            <li>Improved <strong>OCR and document analysis</strong> in the existing AI system by 15%.</li>
+            <li>Developed a <strong>Virtual Try-On model</strong> using Stable Diffusion.</li>
+            <li>Worked directly with Japanese clients, including <strong>Deloitte Japan</strong>.</li>
+          </ul>
+          <div class="tl-tags">
+            <span class="tl-tag">Computer Vision</span>
+            <span class="tl-tag">NLP</span>
+            <span class="tl-tag">OCR</span>
+            <span class="tl-tag">LLM Finetune</span>
+            <span class="tl-tag">LLM Pretrain</span>
+            <span class="tl-tag">Prompt Engineering</span>
+            <span class="tl-tag">RAG System</span>
+            <span class="tl-tag">Model Monitoring</span>
+            <span class="tl-tag">Hyper-parameter Tuning</span>
+            <span class="tl-tag">Stable Diffusion</span>
+            <span class="tl-tag">Japanese Client</span>
+            <span class="tl-tag">Deloitte Japan</span>
+            <span class="tl-tag">R&amp;D</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="work">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-num">
+        <span class="line"></span>
+        <span>03 / Projects</span>
+        <span class="jp">— 作品</span>
+      </div>
+      <h2 class="section-title">Things I've built &mdash; <em>Multi-agents systems, RAG pipeline, fine-tuning LLM,</em> and end-to-end systems.</h2>
+    </div>
+
+    <div class="work-grid">
+
+      <!-- 01 · Research Assistant AI -->
+      <div class="work-card reveal">
+        <div class="work-visual">
+          <div class="work-fallback">
+            <span class="work-kanji">探</span>
+            <div class="work-overlay">
+              <div class="work-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </div>
+              <div class="work-overlay-title">Research Assistant AI</div>
+              <div class="work-tags">
+                <span class="work-tag">LLM Agent</span>
+                <span class="work-tag">ReAct</span>
+                <span class="work-tag">4 Tools</span>
+              </div>
+            </div>
+          </div>
+          <!-- To use a screenshot:  <img src="images/projects/research-assistant.png" alt="Research Assistant AI" /> -->
+          <!-- To use a demo GIF:    <img src="images/projects/research-assistant.gif" alt="Research Assistant AI" /> -->
+          <!-- To use a video:       <video src="images/projects/research-assistant.mp4" autoplay loop muted playsinline></video> -->
+          <img src="images/Research_Assistant_AI.gif" alt="Research Assistant AI demo" />
+        </div>
+        <div class="work-info">
+          <div class="work-eyebrow"><span class="num">01 ·</span> LLM Agent</div>
+          <h3 class="work-title">Research Assistant AI</h3>
+          <p class="work-desc">A ReAct-style agent built on the open-source <em>OpenHermes-2.5-Mistral-7B</em>. Reasons through multi-step research queries and decides which of four tools to call &mdash; SerpAPI, Wikipedia, PubMed, or arXiv &mdash; rather than depending on closed-source GPT-4 for the agentic loop. Ships with a FastAPI UI and a terminal interface that exposes the full chain of thought.</p>
+          <div class="work-stack">
+            <span>Python</span><span>LangChain</span><span>OpenHermes-2.5</span><span>FastAPI</span><span>arXiv API</span><span>PubMed</span>
+          </div>
+          <a class="work-link" href="https://github.com/Hujaifa-Git/Research-Assistant-AI-using-LLM-Agent" target="_blank" rel="noopener">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 02 · Japanese Lawyer LLM -->
+      <div class="work-card reveal">
+        <div class="work-visual">
+          <div class="work-fallback">
+            <span class="work-kanji">法</span>
+            <div class="work-overlay">
+              <div class="work-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg>
+              </div>
+              <div class="work-overlay-title">Japanese Lawyer LLM</div>
+              <div class="work-tags">
+                <span class="work-tag">RAG</span>
+                <span class="work-tag">日本語</span>
+                <span class="work-tag">ELYZA-LLaMA</span>
+              </div>
+            </div>
+          </div>
+          <!-- <img src="images/projects/japanese-lawyer.png" alt="Japanese Lawyer LLM" /> -->
+          <img src="images/Japanese-Lawyer-using-Langchain-and-LLM.gif" alt="Japanese Lawyer LLM demo" />
+        </div>
+        <div class="work-info">
+          <div class="work-eyebrow"><span class="num">02 ·</span> RAG &middot; 日本語</div>
+          <h3 class="work-title">Japanese Lawyer LLM</h3>
+          <p class="work-desc">A RAG application that answers legal questions in Japanese using the full corpus of Japanese law as its knowledge base. Built on <em>ELYZA-Japanese-LLaMA-2-7B</em> with multilingual-e5 embeddings, and engineered so the knowledge base is swappable &mdash; point it at a different corpus and the same pipeline becomes a teacher, doctor, or anything else.</p>
+          <div class="work-stack">
+            <span>LangChain</span><span>ELYZA-Japanese-LLaMA-2-7B</span><span>FAISS</span><span>multilingual-e5</span><span>Flask</span>
+          </div>
+          <a class="work-link" href="https://github.com/Hujaifa-Git/Japanese-Lawyer-using-Langchain-and-LLM" target="_blank" rel="noopener">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 03 · LLM Mixture of Agents -->
+      <div class="work-card reveal">
+        <div class="work-visual">
+          <div class="work-fallback">
+            <span class="work-kanji">層</span>
+            <div class="work-overlay">
+              <div class="work-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+              </div>
+              <div class="work-overlay-title">Mixture of Agents</div>
+              <div class="work-tags">
+                <span class="work-tag">Multi-LLM</span>
+                <span class="work-tag">Layered</span>
+                <span class="work-tag">7B Models</span>
+              </div>
+            </div>
+          </div>
+          <!-- <img src="images/projects/mixture-of-agents.png" alt="LLM Mixture of Agents" /> -->
+          <img src="images/LLM-Mixture-of-Agents.png" alt="LLM Mixture of Agents" />
+        </div>
+        <div class="work-info">
+          <div class="work-eyebrow"><span class="num">03 ·</span> Architecture</div>
+          <h3 class="work-title">LLM Mixture of Agents</h3>
+          <p class="work-desc">A layered multi-LLM pipeline that approaches GPT-4-class quality using only small open-source models. Layer-1 <em>proposers</em> generate candidate answers; subsequent <em>aggregator</em> layers synthesize, critique, and refine. Inspired by the 70B-parameter MoA paper, but engineered for setups where renting an A100 isn't an option.</p>
+          <div class="work-stack">
+            <span>PyTorch</span><span>HuggingFace</span><span>Qwen2</span><span>Phi-3</span><span>OpenHermes-Mistral</span>
+          </div>
+          <a class="work-link" href="https://github.com/Hujaifa-Git/LLM-Mixture-of-Agents" target="_blank" rel="noopener">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 04 · AudioScribe -->
+      <div class="work-card reveal">
+        <div class="work-visual">
+          <div class="work-fallback">
+            <span class="work-kanji">音</span>
+            <div class="work-overlay">
+              <div class="work-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-7h3z"/><path d="M3 19a2 2 0 0 0 2 2h1v-7H3z"/></svg>
+              </div>
+              <div class="work-overlay-title">AudioScribe</div>
+              <div class="work-tags">
+                <span class="work-tag">Whisper</span>
+                <span class="work-tag">99+ Languages</span>
+                <span class="work-tag">Real-time Sync</span>
+              </div>
+            </div>
+          </div>
+          <!-- <img src="images/projects/audioscribe.png" alt="AudioScribe" /> -->
+          <img src="images/audioscribe.png" alt="AudioScribe" />
+        </div>
+        <div class="work-info">
+          <div class="work-eyebrow"><span class="num">04 ·</span> Product</div>
+          <h3 class="work-title">AudioScribe</h3>
+          <p class="work-desc">A polished audio-transcription web app built on OpenAI Whisper, supporting 99+ languages with synchronized text highlighting during playback. Click any text segment to jump to that point in the audio. Designed especially for Japanese language learners and journalists. CPU-optimized with optional CUDA acceleration.</p>
+          <div class="work-stack">
+            <span>FastAPI</span><span>Whisper</span><span>PyTorch</span><span>SQLite</span><span>Vanilla JS</span><span>FFmpeg</span>
+          </div>
+          <a class="work-link" href="https://github.com/Hujaifa-Git/audioscribe" target="_blank" rel="noopener">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 05 · Japanese LLM Fine-tuning -->
+      <div class="work-card reveal">
+        <div class="work-visual">
+          <div class="work-fallback">
+            <span class="work-kanji">訓</span>
+            <div class="work-overlay">
+              <div class="work-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              </div>
+              <div class="work-overlay-title">Japanese LLM Fine-tuning</div>
+              <div class="work-tags">
+                <span class="work-tag">LoRA</span>
+                <span class="work-tag">日本語</span>
+                <span class="work-tag">Open-Calm-7B</span>
+              </div>
+            </div>
+          </div>
+          <!-- <img src="images/projects/japanese-finetune.png" alt="Japanese LLM Fine-tuning" /> -->
+          <img src="images/LLM-Finetune-on-Custom-Dataset-Japanese.gif" alt="Japanese LLM Fine-tuning demo" />
+        </div>
+        <div class="work-info">
+          <div class="work-eyebrow"><span class="num">05 ·</span> Fine-tuning &middot; 日本語</div>
+          <h3 class="work-title">Japanese LLM Fine-tuning</h3>
+          <p class="work-desc">LoRA fine-tuning of <em>Open-Calm-7B</em> on the Japanese Alpaca dataset for instruction-following in Japanese. Memory-efficient training pipeline with PEFT, evaluating output quality on Japanese-specific tasks where general-purpose LLMs typically underperform.</p>
+          <div class="work-stack">
+            <span>LoRA</span><span>PEFT</span><span>Open-Calm-7B</span><span>HuggingFace</span><span>Japanese Alpaca</span>
+          </div>
+          <a class="work-link" href="https://github.com/Hujaifa-Git/LLM-Finetune-on-Custom-Dataset-Japanese" target="_blank" rel="noopener">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 06 · Japanese CSV-or-Web Search -->
+      <div class="work-card reveal">
+        <div class="work-visual">
+          <div class="work-fallback">
+            <span class="work-kanji">索</span>
+            <div class="work-overlay">
+              <div class="work-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg>
+              </div>
+              <div class="work-overlay-title">CSV-or-Web Search</div>
+              <div class="work-tags">
+                <span class="work-tag">Hybrid RAG</span>
+                <span class="work-tag">日本語</span>
+                <span class="work-tag">Routing</span>
+              </div>
+            </div>
+          </div>
+          <!-- <img src="images/projects/csv-web-search.png" alt="Japanese CSV-or-Web Search" /> -->
+          <img src="images/Japanese-LLM-CSVRetrival-or-WebSearch.gif" alt="Japanese CSV/Web Search demo" />
+        </div>
+        <div class="work-info">
+          <div class="work-eyebrow"><span class="num">06 ·</span> Hybrid RAG &middot; 日本語</div>
+          <h3 class="work-title">Japanese CSV-or-Web Search</h3>
+          <p class="work-desc">Hybrid retrieval system that routes user queries between a local CSV-backed RAG store and live web search via SerpAPI &mdash; in Japanese. The router decides per-query whether the answer lives in the structured corpus or needs fresh information from the web.</p>
+          <div class="work-stack">
+            <span>LangChain</span><span>ELYZA</span><span>SerpAPI</span><span>FAISS</span><span>Routing</span>
+          </div>
+          <a class="work-link" href="https://github.com/Hujaifa-Git/Japanese-LLM-CSVRetrival-or-WebSearch" target="_blank" rel="noopener">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 07 · RAG on Every Datatype -->
+      <div class="work-card reveal">
+        <div class="work-visual">
+          <div class="work-fallback">
+            <span class="work-kanji">型</span>
+            <div class="work-overlay">
+              <div class="work-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </div>
+              <div class="work-overlay-title">RAG on Every Datatype</div>
+              <div class="work-tags">
+                <span class="work-tag">7 Formats</span>
+                <span class="work-tag">LangChain</span>
+                <span class="work-tag">Reference</span>
+              </div>
+            </div>
+          </div>
+          <!-- <img src="images/projects/rag-every-datatype.png" alt="RAG on Every Datatype" /> -->
+          <img src="images/RAG-on-Every-Datatype-using-Langchain.png" alt="RAG on Every Datatype" />
+        </div>
+        <div class="work-info">
+          <div class="work-eyebrow"><span class="num">07 ·</span> RAG &middot; Reference</div>
+          <h3 class="work-title">RAG on Every Datatype</h3>
+          <p class="work-desc">Seven RAG pipelines for plain text, PDF, HTML, Markdown, JSON, CSV, and entire directories &mdash; built with LangChain. Designed as a reference repository so anyone starting with RAG can copy a pattern that matches their data and adapt from there.</p>
+          <div class="work-stack">
+            <span>LangChain</span><span>FAISS</span><span>Multi-format</span><span>PyPDF</span><span>BeautifulSoup</span>
+          </div>
+          <a class="work-link" href="https://github.com/Hujaifa-Git/RAG-on-Every-Datatype-using-Langchain" target="_blank" rel="noopener">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 08 · Resume Classification -->
+      <div class="work-card reveal">
+        <div class="work-visual">
+          <div class="work-fallback">
+            <span class="work-kanji">類</span>
+            <div class="work-overlay">
+              <div class="work-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              </div>
+              <div class="work-overlay-title">Resume Classification</div>
+              <div class="work-tags">
+                <span class="work-tag">BERT</span>
+                <span class="work-tag">24 Classes</span>
+                <span class="work-tag">Belt-NLP</span>
+              </div>
+            </div>
+          </div>
+          <!-- <img src="images/projects/resume-classification.png" alt="Resume Classification" /> -->
+          <img src="images/Resume-Classification.png" alt="Resume Classification" />
+        </div>
+        <div class="work-info">
+          <div class="work-eyebrow"><span class="num">08 ·</span> Classification</div>
+          <h3 class="work-title">Resume Classification</h3>
+          <p class="work-desc">BERT fine-tuned for 24-category resume classification, paired with <em>Belt-NLP</em> chunking to handle long documents that exceed the model's context length. Practical applied-NLP work focused on real-world document processing.</p>
+          <div class="work-stack">
+            <span>BERT</span><span>Belt-NLP</span><span>HuggingFace</span><span>PyTorch</span>
+          </div>
+          <a class="work-link" href="https://github.com/Hujaifa-Git/Resume-Classification" target="_blank" rel="noopener">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 09 · Agricultural Chatbot -->
+      <div class="work-card reveal">
+        <div class="work-visual">
+          <div class="work-fallback">
+            <span class="work-kanji">農</span>
+            <div class="work-overlay">
+              <div class="work-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <div class="work-overlay-title">Agricultural Chatbot</div>
+              <div class="work-tags">
+                <span class="work-tag">Voice + Text</span>
+                <span class="work-tag">Domain-Specific</span>
+                <span class="work-tag">OpenAI</span>
+              </div>
+            </div>
+          </div>
+          <!-- <img src="images/projects/agricultural-chatbot.png" alt="Agricultural Chatbot" /> -->
+          <img src="images/Agricultural-Chatbot-LLM.png" alt="Agricultural Chatbot LLM" />
+        </div>
+        <div class="work-info">
+          <div class="work-eyebrow"><span class="num">09 ·</span> Chatbot</div>
+          <h3 class="work-title">Agricultural Chatbot</h3>
+          <p class="work-desc">Domain-specific chatbot for agriculture supporting both text and voice interactions. Blends OpenAI and HuggingFace APIs for natural conversation with farmers, surfacing crop, weather, and best-practice information through a friendly UI.</p>
+          <div class="work-stack">
+            <span>OpenAI</span><span>HuggingFace</span><span>Speech-to-Text</span><span>Python</span>
+          </div>
+          <a class="work-link" href="https://github.com/Hujaifa-Git/Agricultural-Chatbot-LLM" target="_blank" rel="noopener">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+
+    <!-- 10 · File Management Agent -->
+      <div class="work-card reveal">
+        <div class="work-visual">
+          <div class="work-fallback">
+            <span class="work-kanji">具</span>
+            <div class="work-overlay">
+              <div class="work-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              </div>
+              <div class="work-overlay-title">File Management Agent</div>
+              <div class="work-tags">
+                <span class="work-tag">GPT-4o</span>
+                <span class="work-tag">Tool Use</span>
+                <span class="work-tag">Sandboxed</span>
+              </div>
+            </div>
+          </div>
+          <!-- <img src="images/projects/file-agent.png" alt="File Management Agent" /> -->
+        </div>
+        <div class="work-info">
+          <div class="work-eyebrow"><span class="num">10 ·</span> Tool Use</div>
+          <h3 class="work-title">File Management Agent</h3>
+          <p class="work-desc">An intelligent file-management agent powered by GPT-4o, with 6 tools for exploring, reading, searching, and analyzing files across formats (txt, md, csv, json, pdf, docx). All operations are confined to a sandboxed safe directory, with real-time tool-execution logging so you can see exactly what the agent is doing and why.</p>
+          <div class="work-stack">
+            <span>OpenAI GPT-4o</span><span>Function Calling</span><span>PyPDF</span><span>python-docx</span><span>Sandboxing</span>
+          </div>
+          <a class="work-link" href="https://github.com/Hujaifa-Git/File-Management-Agent-OpenAI" target="_blank" rel="noopener">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 11 · Domain-Adaptive Pretraining -->
+      <div class="work-card reveal">
+        <div class="work-visual">
+          <div class="work-fallback">
+            <span class="work-kanji">域</span>
+            <div class="work-overlay">
+              <div class="work-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              </div>
+              <div class="work-overlay-title">Domain-Adaptive Pretraining</div>
+              <div class="work-tags">
+                <span class="work-tag">LoRA</span>
+                <span class="work-tag">DeepSpeed</span>
+                <span class="work-tag">LLaMA / Mistral</span>
+              </div>
+            </div>
+          </div>
+          <!-- <img src="images/projects/domain-pretraining.png" alt="Domain-Adaptive Pretraining" /> -->
+        </div>
+        <div class="work-info">
+          <div class="work-eyebrow"><span class="num">11 ·</span> Pretraining</div>
+          <h3 class="work-title">Domain-Adaptive Pretraining</h3>
+          <p class="work-desc">Continual pretraining pipeline for <em>LLaMA</em> and <em>Mistral</em> models using LoRA and DeepSpeed for memory-efficient training. Adapts general-purpose foundation models to specialized domains without the full cost of pretraining from scratch.</p>
+          <div class="work-stack">
+            <span>LoRA</span><span>DeepSpeed</span><span>LLaMA</span><span>Mistral</span><span>PyTorch</span>
+          </div>
+          <a class="work-link" href="https://github.com/Hujaifa-Git/LLM-Domain-Adaptive-Pretraining-using-LORA" target="_blank" rel="noopener">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+
+      </div>
+
+    <div class="work-more reveal">
+      There are a lot more projects on
+      <a href="https://github.com/Hujaifa-Git" target="_blank" rel="noopener">my GitHub →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Research -->
+<section id="research">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-num">
+        <span class="line"></span>
+        <span>04 / Research</span>
+        <span class="jp">— 研究</span>
+      </div>
+      <h2 class="section-title">Research work on <em>generative models</em> and autonomous LLM tooling.</h2>
+    </div>
+
+    <div class="pub-grid">
+
+      <!-- Paper 01 · ATLASS -->
+      <a href="https://arxiv.org/abs/2503.10071" target="_blank" rel="noopener" class="pub-card reveal">
+        <div class="pub-visual">
+          <div class="pub-fallback">
+            <span class="pub-kanji">環</span>
+            <div class="pub-overlay">
+              <div class="pub-overlay-label">Pipeline Figure</div>
+              <div class="pub-overlay-caption">SOSE 2025</div>
+            </div>
+          </div>
+          <!-- <img src="images/research/atlass-pipeline.png" alt="ATLASS pipeline diagram" /> -->
+          <img src="images/Advance_Tool_%20Learning_and_Selection_System.png" alt="ATLASS pipeline diagram" />
+        </div>
+        <div class="pub-info">
+          <div class="pub-meta">
+            <div class="pub-year">2025</div>
+            <div class="pub-venue">SOSE 2025 &middot; arXiv:2503.10071</div>
+          </div>
+          <h3 class="pub-title">Advanced Tool Learning and Selection System <em>(ATLASS)</em> &mdash; A Closed-Loop Framework Using LLM</h3>
+          <span class="pub-link">
+            Read paper
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Paper 02 · Jamdani Motifs -->
+      <a href="https://cennser.org/IJCVSP/finalPaper/140105.pdf" target="_blank" rel="noopener" class="pub-card reveal">
+        <div class="pub-visual">
+          <div class="pub-fallback">
+            <span class="pub-kanji">織</span>
+            <div class="pub-overlay">
+              <div class="pub-overlay-label">Pipeline Figure</div>
+              <div class="pub-overlay-caption">ICIEV-IVPR 2023</div>
+            </div>
+          </div>
+          <!-- <img src="images/research/jamdani-pipeline.png" alt="Jamdani GAN pipeline diagram" /> -->
+          <img src="images/Generation_of_Clothing_Items_with_Jamdani_Motif.png" alt="Jamdani GAN pipeline diagram" />
+        </div>
+        <div class="pub-info">
+          <div class="pub-meta">
+            <div class="pub-year">2023</div>
+            <div class="pub-venue">ICIEV-IVPR 2023 &middot; IJCVSP</div>
+          </div>
+          <h3 class="pub-title">Generation of Clothing Items with <em>Jamdani Motif Elements</em> Using Automated Generative Adversarial Networks</h3>
+          <span class="pub-link">
+            Read paper
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+<!-- Skills -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-num">
+        <span class="line"></span>
+        <span>05 / Skills</span>
+        <span class="jp">— 技術</span>
+      </div>
+      <h2 class="section-title">The <em>Technical Skills</em> I possess</h2>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-block reveal">
+        <span class="skill-num">01</span>
+        <div class="skill-title">生成AI</div>
+        <h3 class="skill-title-en">Generative AI</h3>
+        <div class="skill-items">
+          <span class="skill-item">Pretraining</span>
+          <span class="skill-item">Fine-tuning</span>
+          <span class="skill-item">LoRA</span>
+          <span class="skill-item">Quantization</span>
+          <span class="skill-item">RLHF</span>
+          <span class="skill-item">DPO</span>
+          <span class="skill-item">Prompt Engineering</span>
+          <span class="skill-item">RAG</span>
+          <span class="skill-item">LLM Agents</span>
+          <span class="skill-item">Multi-Agent</span>
+        </div>
+      </div>
+
+      <div class="skill-block reveal" data-delay="100">
+        <span class="skill-num">02</span>
+        <div class="skill-title">枠組み</div>
+        <h3 class="skill-title-en">Frameworks</h3>
+        <div class="skill-items">
+          <span class="skill-item">PyTorch</span>
+          <span class="skill-item">TensorFlow</span>
+          <span class="skill-item">TensorBoard</span>
+          <span class="skill-item">LangChain</span>
+          <span class="skill-item">LangGraph</span>
+          <span class="skill-item">LlamaIndex</span>
+          <span class="skill-item">AutoGen</span>
+          <span class="skill-item">CrewAI</span>
+          <span class="skill-item">DeepSpeed</span>
+          <span class="skill-item">Unsloth</span>
+          <span class="skill-item">HuggingFace</span>
+          <span class="skill-item">TFX</span>
+          <span class="skill-item">FastAPI</span>
+          <span class="skill-item">Flask</span>
+          <span class="skill-item">Streamlit</span>
+          <span class="skill-item">scikit-learn</span>
+        </div>
+      </div>
+
+      <div class="skill-block reveal" data-delay="200">
+        <span class="skill-num">03</span>
+        <div class="skill-title">機械学習</div>
+        <h3 class="skill-title-en">ML Techniques</h3>
+        <div class="skill-items">
+          <span class="skill-item">DNN</span>
+          <span class="skill-item">CNN</span>
+          <span class="skill-item">RNN</span>
+          <span class="skill-item">NLP</span>
+          <span class="skill-item">Computer Vision</span>
+          <span class="skill-item">GNN</span>
+          <span class="skill-item">Feature Engineering</span>
+          <span class="skill-item">Data Processing</span>
+          <span class="skill-item">Model Training</span>
+          <span class="skill-item">Model Monitoring</span>
+          <span class="skill-item">Hyperparameter Tuning</span>
+        </div>
+      </div>
+
+      <div class="skill-block reveal" data-delay="300">
+        <span class="skill-num">04</span>
+        <div class="skill-title">言語・基盤</div>
+        <h3 class="skill-title-en">Languages &amp; Infrastructure</h3>
+        <div class="skill-items">
+          <span class="skill-item">Python</span>
+          <span class="skill-item">C++</span>
+          <span class="skill-item">C</span>
+          <span class="skill-item">Java</span>
+          <span class="skill-item">MSSQL</span>
+          <span class="skill-item">MySQL</span>
+          <span class="skill-item">MongoDB</span>
+          <span class="skill-item">Vector Database</span>
+          <span class="skill-item">FAISS</span>
+          <span class="skill-item">Pinecone</span>
+          <span class="skill-item">Azure Cloud</span>
+          <span class="skill-item">Azure DevOps</span>
+          <span class="skill-item">Azure API</span>
+          <span class="skill-item">VM (Hyperstack)</span>
+          <span class="skill-item">API Design</span>
+          <span class="skill-item">Server Maintenance</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Education / Languages -->
+<section id="background">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-num">
+        <span class="line"></span>
+        <span>06 / Background</span>
+        <span class="jp">— 経歴</span>
+      </div>
+      <h2 class="section-title">Education, certifications, and the languages I work in.</h2>
+    </div>
+
+    <div class="bg-grid">
+      <div class="reveal">
+        <div class="edu-card">
+          <h3 class="edu-degree">B.Sc. in <em>Computer Science &amp; Engineering</em></h3>
+          <div class="edu-school">Ahsanullah University of Science and Technology</div>
+          <div class="edu-meta">
+            <div>Graduated <strong>2023</strong></div>
+            <div>CGPA <strong>3.82 / 4.00</strong></div>
+            <div>Dean's <strong>List of Honor</strong></div>
+          </div>
+        </div>
+
+        <div class="cert-list">
+          <div class="cert-item">JLPT N3 &mdash; Japanese Language Proficiency <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">日本語能力試験</span></div>
+          <div class="cert-item">Deep Learning Specialization <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">Coursera</span></div>
+          <div class="cert-item">Introduction to LangGraph <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">LangChain</span></div>
+          <div class="cert-item">Dean's List of Honor <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">AUST</span></div>
+          <div class="cert-item">250+ Problems on LeetCode <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">Active</span></div>
+          <div class="cert-item">Driving License <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">Bangladesh</span></div>
+          <div class="cert-item">International Driving Permit (IDP) <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">Worldwide</span></div>
+        </div>
+      </div>
+
+      <div class="reveal" data-delay="200">
+        <div class="lang-list">
+          <div class="lang-item" style="--level: 1;">
+            <div class="lang-name">Bangla<span class="native">বাংলা · 母語</span></div>
+            <div class="lang-level">Native<span class="sub">— 母語話者</span></div>
+            <div class="lang-bar"></div>
+          </div>
+          <div class="lang-item" style="--level: 0.95;">
+            <div class="lang-name">English<span class="native">英語 · Fluent</span></div>
+            <div class="lang-level">Full Proficiency<span class="sub">— Professional</span></div>
+            <div class="lang-bar"></div>
+          </div>
+          <div class="lang-item" style="--level: 0.65;">
+            <div class="lang-name">Japanese<span class="native">日本語 · JLPT N3</span></div>
+            <div class="lang-level">Upper-Conversational<span class="sub">— Beyond daily talk, approaching business</span></div>
+            <div class="lang-bar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="section-inner contact-inner">
+    <div class="contact-header reveal">
+      <div class="contact-eyebrow">出会い · Let's connect</div>
+      <h1 class="contact-title">Let's build <em>something</em> together.</h1>
+      <p class="contact-sub">
+        Looking for a job related to AI with a Japan focus, strong research roots, and production experience. I'd love to hear from you &mdash; reach out via any of the channels below.
+      </p>
+    </div>
+
+    <div class="contact-links reveal" data-delay="200">
+      <a href="mailto:hujaifaislam123@gmail.com" class="contact-card" id="emailCard">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <span class="contact-label">Email · 電子メール</span>
+        <span class="contact-value">hujaifaislam123@gmail.com</span>
+        <div class="contact-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+        <span class="copy-toast" id="copyToast">Copied</span>
+      </a>
+
+      <a href="https://www.linkedin.com/in/hujaifa-islam-a88891187/" target="_blank" rel="noopener" class="contact-card">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </div>
+        <span class="contact-label">LinkedIn · 仕事</span>
+        <span class="contact-value">/in/hujaifa-islam</span>
+        <div class="contact-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </a>
+
+      <a href="https://github.com/Hujaifa-Git" target="_blank" rel="noopener" class="contact-card">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </div>
+        <span class="contact-label">GitHub · コード</span>
+        <span class="contact-value">@Hujaifa-Git</span>
+        <div class="contact-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </a>
+
+      <a href="tel:+819040525996" class="contact-card">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <span class="contact-label">Phone · 電話</span>
+        <span class="contact-value">+81 90-4052-5996</span>
+        <div class="contact-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <span class="jp">© 2026</span> Islam Md Hujaifa
+    </div>
+    <div>
+      <span class="jp">埼玉県川越市</span> <span class="heart">♦</span> Tokyo · Kawagoe
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===== Cursor glow =====
+const glow = document.getElementById('cursorGlow');
+let glowX = window.innerWidth / 2;
+let glowY = window.innerHeight / 2;
+let targetX = glowX;
+let targetY = glowY;
+document.addEventListener('mousemove', (e) => {
+  targetX = e.clientX;
+  targetY = e.clientY;
+});
+function animateGlow() {
+  glowX += (targetX - glowX) * 0.08;
+  glowY += (targetY - glowY) * 0.08;
+  glow.style.left = glowX + 'px';
+  glow.style.top = glowY + 'px';
+  requestAnimationFrame(animateGlow);
+}
+animateGlow();
+
+// ===== Sticky nav scroll state =====
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+// ===== Mobile nav toggle =====
+const toggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+toggle.addEventListener('click', () => navLinks.classList.toggle('mobile-open'));
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => navLinks.classList.remove('mobile-open'));
+});
+
+// ===== Reveal on scroll =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal, .lang-item').forEach(el => observer.observe(el));
+
+// ===== Email copy on click (instead of just mailto) =====
+const emailCard = document.getElementById('emailCard');
+const toast = document.getElementById('copyToast');
+let lastClick = 0;
+emailCard.addEventListener('click', (e) => {
+  // double-click pattern: first click copies, second click goes to mailto
+  const now = Date.now();
+  if (now - lastClick < 1500) return; // allow second click to open mailto
+  lastClick = now;
+  e.preventDefault();
+  navigator.clipboard?.writeText('hujaifaislam123@gmail.com').then(() => {
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 1600);
+  }).catch(() => {});
+});
+</script>
+
+</body>
+</html>
