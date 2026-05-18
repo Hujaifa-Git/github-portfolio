@@ -141,34 +141,6 @@ body::before {
 .nav-links a:hover::after { width: 100%; }
 .nav-mobile-toggle { display: none; background: none; border: none; color: var(--washi); cursor: pointer; font-size: 1.4rem; }
 
-/* ===== Language Toggle ===== */
-.lang-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-left: 1.5rem;
-  padding: 0.35rem 0.55rem;
-  border: 1px solid var(--line);
-  background: transparent;
-  cursor: pointer;
-  transition: border-color 0.3s, background 0.3s;
-}
-.lang-toggle:hover { border-color: var(--shu); }
-.lang-toggle .flag {
-  width: 22px;
-  height: 15px;
-  display: inline-block;
-  opacity: 0.4;
-  transition: opacity 0.3s, transform 0.3s;
-  border: 1px solid var(--line-soft);
-}
-.lang-toggle .flag.active { opacity: 1; transform: scale(1.08); }
-.lang-toggle .sep {
-  width: 1px;
-  height: 14px;
-  background: var(--line);
-}
-
 /* ===== Hero ===== */
 .hero {
   min-height: 100vh;
@@ -1457,7 +1429,6 @@ footer {
     gap: 1.5rem;
     border-bottom: 1px solid var(--line);
   }
-  .lang-toggle { margin-left: 0; align-self: flex-start; }
   section { padding: 5rem 1.5rem; }
   .hero { padding: 7rem 1.5rem 4rem; }
   .hero-meta { flex-wrap: wrap; gap: 1.5rem; }
@@ -1484,19 +1455,12 @@ footer {
 <nav class="nav" id="nav">
   <a href="#" class="nav-logo">匠<span class="dot"></span></a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#about" data-ja="紹介">About</a></li>
-    <li><a href="#experience" data-ja="経歴">Experience</a></li>
-    <li><a href="#work" data-ja="作品">Work</a></li>
-    <li><a href="#research" data-ja="研究">Research</a></li>
-    <li><a href="#skills" data-ja="技術">Skills</a></li>
-    <li><a href="#contact" data-ja="連絡先">Contact</a></li>
-    <li>
-      <button class="lang-toggle" id="langToggle" aria-label="Language toggle" type="button">
-        <svg class="flag" id="flagEN" viewBox="0 0 7410 3900" xmlns="http://www.w3.org/2000/svg" aria-label="English"><rect width="7410" height="3900" fill="#b22234"/><path d="M0,450H7410M0,1050H7410M0,1650H7410M0,2250H7410M0,2850H7410M0,3450H7410" stroke="#fff" stroke-width="300"/><rect width="2964" height="2100" fill="#3c3b6e"/></svg>
-        <span class="sep"></span>
-        <svg class="flag" id="flagJP" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" aria-label="Japanese"><rect width="900" height="600" fill="#fff"/><circle cx="450" cy="300" r="180" fill="#bc002d"/></svg>
-      </button>
-    </li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
   <button class="nav-mobile-toggle" id="navToggle" aria-label="Menu">≡</button>
 </nav>
@@ -1509,42 +1473,41 @@ footer {
     <div class="hero-left">
       <div class="hero-eyebrow">
         <span class="line"></span>
-        <span data-ja="日本での就職機会を募集中">Available for opportunities in Japan</span>
+        <span>Available for opportunities in Japan</span>
       </div>
       <h1>
-        <span class="first" data-ja="イスラム・エムディ">Islam Md</span>
-        <span class="last" data-ja="フジャイファ。">Hujaifa.</span>
-        <span class="jp" data-ja="Islam Md Hujaifa">イスラム・エムディ・フジャイファ</span>
+        <span class="first">Islam Md</span>
+        <span class="last">Hujaifa.</span>
+        <span class="jp">イスラム・エムディ・フジャイファ</span>
       </h1>
-      <div class="hero-role" data-ja-html='機械学習・AIエンジニア <span class="sep">/</span> データサイエンティスト <span class="sep">/</span> 生成AIエンジニア'>
+      <div class="hero-role">
         ML/AI Engineer <span class="sep">/</span> Data Scientist <span class="sep">/</span> Generative AI Engineer
       </div>
-      <p class="hero-bio" data-ja-html='<span class="accent">従来型のAI</span>技術と<span class="accent">生成AI</span>を専門とし、創造的表現の限界を押し広げるためにAIを活用する、誠実で規律あるエンジニア。RAGパイプライン、LLMエージェントの構築、モデルのファインチューニングを行います。独立して、またチームの一員として、どちらの形でも力を発揮します。日本との強いつながりとイノベーションへの情熱を持ち、現在は埼玉県在住、<span class="jp-inline">日本</span>で長期的にキャリアを築くことを目指しています。'>
+      <p class="hero-bio">
         A committed and disciplined individual leveraging AI to push the boundaries of creative expression, specializing in <span class="accent">traditional AI</span> techniques and <span class="accent">Generative AI</span> to build RAG pipelines, LLM agents, and fine-tune models. Equally effective independently or as part of a team. With strong ties to Japan and a passion for innovation, currently living in Saitama aspiring to build a long-term career in Japan <span class="jp-inline">日本</span>.
       </p>
 
       <div class="hero-meta">
         <div>
-          <span class="label" data-ja="所在地">Based in</span>
-          <span class="value" data-ja="埼玉県川越市">Kawagoeshi, Saitama</span>
+          <span class="label">Based in</span>
+          <span class="value">Kawagoeshi, Saitama</span>
         </div>
         <div>
-          <span class="label" data-ja="ステータス">Status</span>
-          <span class="value" data-ja="募集中">Open to roles</span>
+          <span class="label">Status</span>
+          <span class="value">Open to roles</span>
         </div>
         <div>
           <span class="label">JLPT</span>
-          <span class="value" data-ja="N3 · 会話レベル">N3 · Conversational</span>
+          <span class="value">N3 · Conversational</span>
         </div>
       </div>
 
       <div class="hero-cta">
-        <a href="#work" class="btn btn-primary" data-ja-html='実績を見る
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>'>
+        <a href="#work" class="btn btn-primary">
           See the work
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
-        <a href="#contact" class="btn" data-ja="お問い合わせ">
+        <a href="#contact" class="btn">
           Get in touch
         </a>
       </div>
@@ -1557,7 +1520,7 @@ footer {
           <!-- Fallback shown only if image fails / not present -->
           <div class="photo-placeholder">
             匠
-            <small data-ja="写真をここに">Replace with photo</small>
+            <small>Replace with photo</small>
           </div>
           <img src="images/picture.jpg" alt="Islam Md Hujaifa" />
         </div>
@@ -1567,7 +1530,7 @@ footer {
   </div>
 
   <div class="scroll-indicator">
-    <span data-ja="スクロール">Scroll</span>
+    <span>Scroll</span>
     <div class="line"></div>
   </div>
 </section>
@@ -1578,27 +1541,27 @@ footer {
     <div class="section-header reveal">
       <div class="section-num">
         <span class="line"></span>
-        <span data-ja="01 / 紹介">01 / About</span>
+        <span>01 / About</span>
         <span class="jp">— 紹介</span>
       </div>
-      <h2 class="section-title" data-ja-html='<em>人工知能</em>に魅せられた規律あるエンジニア、<span class="jp-inline">日本</span>で長期的なキャリアを築くという夢を持って。'>A disciplined Engineer, drawn to <em>Artificial Intelligence</em> and a dream to build a long-term career in Japan <span class="jp-inline">日本</span></h2>
+      <h2 class="section-title">A disciplined Engineer, drawn to <em>Artificial Intelligence</em> and a dream to build a long-term career in Japan <span class="jp-inline">日本</span></h2>
     </div>
 
     <div class="about-grid">
       <div class="about-stats reveal">
         <div class="stat">
-          <div class="stat-num" data-ja-html='3<sup>年</sup>'>3<sup>yrs</sup></div>
-          <div class="stat-label" data-ja="AIエンジニアリング">AI Engineering</div>
+          <div class="stat-num">3<sup>yrs</sup></div>
+          <div class="stat-label">AI Engineering</div>
           <div class="stat-jp">経験</div>
         </div>
         <div class="stat">
           <div class="stat-num">20<sup>+</sup></div>
-          <div class="stat-label" data-ja="PoCリリース">POCs Shipped</div>
+          <div class="stat-label">POCs Shipped</div>
           <div class="stat-jp">実装</div>
         </div>
         <div class="stat">
           <div class="stat-num">2</div>
-          <div class="stat-label" data-ja="論文">Publications</div>
+          <div class="stat-label">Publications</div>
           <div class="stat-jp">論文</div>
         </div>
         <div class="stat">
@@ -1609,26 +1572,25 @@ footer {
       </div>
 
       <div class="about-text reveal" data-delay="200">
-        <p data-ja-html='私は<strong>3年間の実務経験</strong>を持つAIエンジニアで、研究レベルの技術と実運用システムが交わる領域に注力しています。日常業務は<strong>LLMのファインチューニングとプリトレーニング</strong>、検索パイプライン、そして<strong>LangGraph、AutoGen、CrewAIによるマルチエージェントシステム</strong>の構築です &mdash; さらに、本番環境でそれらを壊さないために必要な、地味で重要なエンジニアリング作業も担っています。'>
+        <p>
           I'm an AI engineer with <strong>three years of production experience</strong>, focused on the layer where research-grade techniques meet shippable systems. My day-to-day is <strong>LLM fine-tuning and pretraining</strong>, retrieval pipelines, and building <strong>multi-agent systems with LangGraph, AutoGen, and CrewAI</strong> &mdash; plus the unglamorous engineering work that keeps them from breaking in production.
         </p>
-        <p data-ja-html='キャリアは<strong>Next Solution Lab</strong>でスタートし、<strong>デロイト・ジャパン</strong>との直接的な業務を含む20以上の生成AI概念実証をリリースしました。その後<strong>Silicon Orchard</strong>に移り、<strong>過去1年間は米国クライアントとの業務</strong>に従事 &mdash; <strong>チームリード</strong>として小規模プロジェクトをエンドツーエンドで主導し、ジュニアエンジニアを指導しながら、会話型レコメンデーション、ビジュアル検索、ECプラットフォーム向けのAzure-OpenAI SQL生成をリリースしました。'>
+        <p>
           I started at <strong>Next Solution Lab</strong> shipping 20+ generative AI proof-of-concepts, including direct work with <strong>Deloitte Japan</strong>. I then moved to <strong>Silicon Orchard</strong>, where I've spent <strong>the past year working with US-based clients</strong> &mdash; leading small-scale projects end-to-end as <strong>team lead</strong>, mentoring junior engineers, and shipping conversational recommendation, visual search, and Azure-OpenAI SQL generation for an e-commerce platform.
         </p>
 
-        <div class="quote" data-ja-html='「ゆっくり築き、深く磨き、意志を持って届ける。」
-          <span class="jp">— 一期一会</span>'>
+        <div class="quote">
           "Build slowly, refine deeply, ship with intent."
           <span class="jp">— 一期一会</span>
         </div>
 
-        <p data-ja-html='私の仕事の重要な一部は<strong>クラウドとインフラ</strong>にあります &mdash; <strong>Azure Cloud、Azure DevOps、Azure API</strong>、モデルモニタリング、そしてデプロイ済みシステムの日々のサーバーメンテナンス。本番環境のAIはモデルだけではなく、その周辺すべてが重要です。'>
+        <p>
           A meaningful slice of my work is also <strong>cloud and infrastructure</strong> &mdash; <strong>Azure Cloud, Azure DevOps, Azure APIs</strong>, model monitoring, and day-to-day server maintenance for the systems we deploy. Production AI isn't just about the model; it's about everything around it.
         </p>
-        <p data-ja-html='実務以外では論文も発表しています。最近の論文<strong>ATLASS</strong>（SOSE 2025）は、自らツールを作り使用するクローズドループのLLMシステムを探求するものです。現在は<strong>TinyAgent</strong>に取り組んでおり、エッジデバイス上でのエージェントタスクのための小型言語モデルのファインチューニングを行っています。'>
+        <p>
           Outside production, I publish. My recent paper <strong>ATLASS</strong> (SOSE 2025) explores closed-loop LLM systems that create and use their own tools. I'm currently working on <strong>TinyAgent</strong> &mdash; fine-tuning small language models for agentic tasks on edge devices.
         </p>
-        <p data-ja="長期的には日本でキャリアを築きたいと考えています。現在JLPT N3レベルで、日本語をさらに上達させるため毎日勉強中です。AIを通じて人類の進歩に貢献することを大切にするチームと共に成長できる役割を探しています。">
+        <p>
           My long-term plan is in Japan. I'm at JLPT N3, studying everyday to improve my Japanese more, and I'm looking for a role where I can grow with a team that cares about advancing humanity through AI.
         </p>
       </div>
@@ -1642,37 +1604,36 @@ footer {
     <div class="section-header reveal">
       <div class="section-num">
         <span class="line"></span>
-        <span data-ja="02 / 経歴">02 / Experience</span>
+        <span>02 / Experience</span>
         <span class="jp">— 経歴</span>
       </div>
-      <h2 class="section-title" data-ja-html='<em>本番環境での</em>3年間、日本と米国のクライアント向けにR&amp;Dをリードし、リリースを行ってきました。'>Three years <em>in production</em>, leading R&amp;D and shipping for clients across Japan and the US.</h2>
+      <h2 class="section-title">Three years <em>in production</em>, leading R&amp;D and shipping for clients across Japan and the US.</h2>
     </div>
 
     <div class="timeline">
       <div class="tl-item reveal">
-        <div class="tl-date" data-ja-html='2024年12月 — <span style="color:var(--shu);">現在</span>
-          <span class="duration">現職</span>'>
+        <div class="tl-date">
           12/2024 — <span style="color:var(--shu);">Running</span>
           <span class="duration">Current role</span>
         </div>
         <div class="tl-content">
-          <h3 class="tl-role" data-ja-html='ソフトウェアエンジニア <em>— 機械学習</em>'>Software Engineer <em>— Machine Learning</em></h3>
+          <h3 class="tl-role">Software Engineer <em>— Machine Learning</em></h3>
           <div class="tl-company">Silicon Orchard Ltd.</div>
           <ul>
-            <li data-ja-html='Whisperを用いた音声認識とGPTを組み合わせ、発音と認識結果のずれを検出する<strong>Quran Recite AI</strong>を構築。'>Built <strong>Quran Recite AI</strong> using Whisper for transcription and GPT to identify pronunciation and transcription deviations.</li>
-            <li data-ja-html='<strong>AutoGen、LangGraph、CrewAIによるマルチエージェントシステム</strong>のR&amp;Dを主導 &mdash; ユーザーのクエリに基づいて外部LLMツールを生成・利用するパイプライン。'>Leading R&amp;D on <strong>multi-agent systems with AutoGen, LangGraph, and CrewAI</strong> &mdash; pipelines that generate and use external LLM tools based on the user query.</li>
-            <li data-ja="小規模プロジェクトをエンドツーエンドで主導し、ジュニアエンジニアを指導。米国クライアント向けに3プロジェクトをチームリードとして納品。">Led small-scale projects end-to-end and mentored junior engineers; delivered 3 projects as team lead for US-based clients.</li>
-            <li data-ja-html='USAILightingのLED ECプラットフォーム向けに、<strong>会話型レコメンデーションシステム、ビジュアル検索、AI搭載検索エンジン</strong>をリリース。'>Shipped a <strong>conversational recommendation system, visual search, and AI-powered search engine</strong> for USAILighting's LED e-commerce platform.</li>
-            <li data-ja-html='Azure OpenAIを介して顧客が会話形式でデータをクエリできる<strong>SQLジェネレーター</strong>を構築。ポリシー設計とプロンプトエンジニアリングを担当。'>Built an <strong>SQL generator</strong> letting customers query data conversationally via Azure OpenAI; owned policy design and prompt engineering.</li>
-            <li data-ja-html='<strong>グラフニューラルネットワーク</strong>を用いた建築フロアプランの検出。'>Architectural floorplan detection using <strong>Graph Neural Networks</strong>.</li>
-            <li data-ja-html='<strong>Azure Cloud</strong>での本番デプロイをAzure DevOpsパイプラインおよびAzure APIで運用維持。サーバー監視と稼働率管理を担当。'>Maintained production deployments on <strong>Azure Cloud</strong> with Azure DevOps pipelines and Azure APIs; handled server monitoring and uptime.</li>
+            <li>Built <strong>Quran Recite AI</strong> using Whisper for transcription and GPT to identify pronunciation and transcription deviations.</li>
+            <li>Leading R&amp;D on <strong>multi-agent systems with AutoGen, LangGraph, and CrewAI</strong> &mdash; pipelines that generate and use external LLM tools based on the user query.</li>
+            <li>Led small-scale projects end-to-end and mentored junior engineers; delivered 3 projects as team lead for US-based clients.</li>
+            <li>Shipped a <strong>conversational recommendation system, visual search, and AI-powered search engine</strong> for USAILighting's LED e-commerce platform.</li>
+            <li>Built an <strong>SQL generator</strong> letting customers query data conversationally via Azure OpenAI; owned policy design and prompt engineering.</li>
+            <li>Architectural floorplan detection using <strong>Graph Neural Networks</strong>.</li>
+            <li>Maintained production deployments on <strong>Azure Cloud</strong> with Azure DevOps pipelines and Azure APIs; handled server monitoring and uptime.</li>
           </ul>
           <div class="tl-tags">
             <span class="tl-tag">AutoGen</span>
             <span class="tl-tag">LangChain</span>
             <span class="tl-tag">LangGraph</span>
             <span class="tl-tag">CrewAI</span>
-            <span class="tl-tag" data-ja="マルチエージェント">Multi-Agent System</span>
+            <span class="tl-tag">Multi-Agent System</span>
             <span class="tl-tag">Azure Cloud</span>
             <span class="tl-tag">Azure DevOps</span>
             <span class="tl-tag">Azure API</span>
@@ -1681,40 +1642,39 @@ footer {
             <span class="tl-tag">RAG</span>
             <span class="tl-tag">GNN</span>
             <span class="tl-tag">Whisper</span>
-            <span class="tl-tag" data-ja="サーバー監視">Server Monitoring</span>
-            <span class="tl-tag" data-ja="チームリード">Team Lead</span>
+            <span class="tl-tag">Server Monitoring</span>
+            <span class="tl-tag">Team Lead</span>
           </div>
         </div>
       </div>
 
       <div class="tl-item reveal">
-        <div class="tl-date" data-ja-html='2023年7月 — 2024年12月
-          <span class="duration">約1年半</span>'>
+        <div class="tl-date">
           07/2023 — 12/2024
           <span class="duration">~1.5 years</span>
         </div>
         <div class="tl-content">
-          <h3 class="tl-role" data-ja="AIエンジニア">AI Engineer</h3>
+          <h3 class="tl-role">AI Engineer</h3>
           <div class="tl-company">Next Solution Lab</div>
           <ul>
-            <li data-ja-html='LLMのR&amp;D &mdash; <strong>20以上の生成AI概念実証アプリケーション</strong>を開発。'>R&amp;D on LLMs &mdash; developed <strong>20+ proof-of-concept generative AI applications</strong>.</li>
-            <li data-ja-html='既存AIシステムの<strong>OCRおよび文書解析</strong>を15%改善。'>Improved <strong>OCR and document analysis</strong> in the existing AI system by 15%.</li>
-            <li data-ja-html='Stable Diffusionを用いた<strong>バーチャル試着モデル</strong>を開発。'>Developed a <strong>Virtual Try-On model</strong> using Stable Diffusion.</li>
-            <li data-ja-html='<strong>デロイト・ジャパン</strong>を含む日本企業のクライアントと直接協働。'>Worked directly with Japanese clients, including <strong>Deloitte Japan</strong>.</li>
+            <li>R&amp;D on LLMs &mdash; developed <strong>20+ proof-of-concept generative AI applications</strong>.</li>
+            <li>Improved <strong>OCR and document analysis</strong> in the existing AI system by 15%.</li>
+            <li>Developed a <strong>Virtual Try-On model</strong> using Stable Diffusion.</li>
+            <li>Worked directly with Japanese clients, including <strong>Deloitte Japan</strong>.</li>
           </ul>
           <div class="tl-tags">
-            <span class="tl-tag" data-ja="コンピュータビジョン">Computer Vision</span>
+            <span class="tl-tag">Computer Vision</span>
             <span class="tl-tag">NLP</span>
             <span class="tl-tag">OCR</span>
-            <span class="tl-tag" data-ja="LLMファインチューニング">LLM Finetune</span>
-            <span class="tl-tag" data-ja="LLMプリトレーニング">LLM Pretrain</span>
-            <span class="tl-tag" data-ja="プロンプト設計">Prompt Engineering</span>
+            <span class="tl-tag">LLM Finetune</span>
+            <span class="tl-tag">LLM Pretrain</span>
+            <span class="tl-tag">Prompt Engineering</span>
             <span class="tl-tag">RAG System</span>
-            <span class="tl-tag" data-ja="モデル監視">Model Monitoring</span>
-            <span class="tl-tag" data-ja="ハイパーパラメータ調整">Hyper-parameter Tuning</span>
+            <span class="tl-tag">Model Monitoring</span>
+            <span class="tl-tag">Hyper-parameter Tuning</span>
             <span class="tl-tag">Stable Diffusion</span>
-            <span class="tl-tag" data-ja="日本企業クライアント">Japanese Client</span>
-            <span class="tl-tag" data-ja="デロイト・ジャパン">Deloitte Japan</span>
+            <span class="tl-tag">Japanese Client</span>
+            <span class="tl-tag">Deloitte Japan</span>
             <span class="tl-tag">R&amp;D</span>
           </div>
         </div>
@@ -1729,10 +1689,10 @@ footer {
     <div class="section-header reveal">
       <div class="section-num">
         <span class="line"></span>
-        <span data-ja="03 / 作品">03 / Projects</span>
+        <span>03 / Projects</span>
         <span class="jp">— 作品</span>
       </div>
-      <h2 class="section-title" data-ja-html='これまで構築してきたもの &mdash; <em>マルチエージェントシステム、RAGパイプライン、LLMファインチューニング、</em>そしてエンドツーエンドのシステム。'>Things I've built &mdash; <em>Multi-agents systems, RAG pipeline, fine-tuning LLM,</em> and end-to-end systems.</h2>
+      <h2 class="section-title">Things I've built &mdash; <em>Multi-agents systems, RAG pipeline, fine-tuning LLM,</em> and end-to-end systems.</h2>
     </div>
 
     <div class="work-grid">
@@ -1746,11 +1706,11 @@ footer {
               <div class="work-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
               </div>
-              <div class="work-overlay-title" data-ja="リサーチアシスタントAI">Research Assistant AI</div>
+              <div class="work-overlay-title">Research Assistant AI</div>
               <div class="work-tags">
-                <span class="work-tag" data-ja="LLMエージェント">LLM Agent</span>
+                <span class="work-tag">LLM Agent</span>
                 <span class="work-tag">ReAct</span>
-                <span class="work-tag" data-ja="4ツール">4 Tools</span>
+                <span class="work-tag">4 Tools</span>
               </div>
             </div>
           </div>
@@ -1760,14 +1720,13 @@ footer {
           <img src="images/Research_Assistant_AI.gif" alt="Research Assistant AI demo" />
         </div>
         <div class="work-info">
-          <div class="work-eyebrow"><span class="num">01 ·</span> <span data-ja="LLMエージェント">LLM Agent</span></div>
-          <h3 class="work-title" data-ja="リサーチアシスタントAI">Research Assistant AI</h3>
-          <p class="work-desc" data-ja-html='オープンソースの<em>OpenHermes-2.5-Mistral-7B</em>を基盤とするReActスタイルのエージェント。多段階のリサーチクエリを推論し、SerpAPI、Wikipedia、PubMed、arXivの4つのツールから適切なものを選んで呼び出します &mdash; エージェントループにGPT-4のようなクローズドソースに依存しません。FastAPIのUIと、思考の連鎖を完全に表示するターミナルインターフェースを備えています。'>A ReAct-style agent built on the open-source <em>OpenHermes-2.5-Mistral-7B</em>. Reasons through multi-step research queries and decides which of four tools to call &mdash; SerpAPI, Wikipedia, PubMed, or arXiv &mdash; rather than depending on closed-source GPT-4 for the agentic loop. Ships with a FastAPI UI and a terminal interface that exposes the full chain of thought.</p>
+          <div class="work-eyebrow"><span class="num">01 ·</span> LLM Agent</div>
+          <h3 class="work-title">Research Assistant AI</h3>
+          <p class="work-desc">A ReAct-style agent built on the open-source <em>OpenHermes-2.5-Mistral-7B</em>. Reasons through multi-step research queries and decides which of four tools to call &mdash; SerpAPI, Wikipedia, PubMed, or arXiv &mdash; rather than depending on closed-source GPT-4 for the agentic loop. Ships with a FastAPI UI and a terminal interface that exposes the full chain of thought.</p>
           <div class="work-stack">
             <span>Python</span><span>LangChain</span><span>OpenHermes-2.5</span><span>FastAPI</span><span>arXiv API</span><span>PubMed</span>
           </div>
-          <a class="work-link" href="https://github.com/Hujaifa-Git/Research-Assistant-AI-using-LLM-Agent" target="_blank" rel="noopener" data-ja-html='GitHubで見る
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>'>
+          <a class="work-link" href="https://github.com/Hujaifa-Git/Research-Assistant-AI-using-LLM-Agent" target="_blank" rel="noopener">
             View on GitHub
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
           </a>
@@ -1783,7 +1742,7 @@ footer {
               <div class="work-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg>
               </div>
-              <div class="work-overlay-title" data-ja="日本語法律LLM">Japanese Lawyer LLM</div>
+              <div class="work-overlay-title">Japanese Lawyer LLM</div>
               <div class="work-tags">
                 <span class="work-tag">RAG</span>
                 <span class="work-tag">日本語</span>
@@ -1796,13 +1755,12 @@ footer {
         </div>
         <div class="work-info">
           <div class="work-eyebrow"><span class="num">02 ·</span> RAG &middot; 日本語</div>
-          <h3 class="work-title" data-ja="日本語法律LLM">Japanese Lawyer LLM</h3>
-          <p class="work-desc" data-ja-html='日本の法律全コーパスを知識ベースとして用い、日本語で法律的な質問に答えるRAGアプリケーション。<em>ELYZA-Japanese-LLaMA-2-7B</em>とmultilingual-e5埋め込みを基盤とし、知識ベースを差し替え可能に設計 &mdash; 別のコーパスを指定するだけで、同じパイプラインが教師や医師など何にでもなります。'>A RAG application that answers legal questions in Japanese using the full corpus of Japanese law as its knowledge base. Built on <em>ELYZA-Japanese-LLaMA-2-7B</em> with multilingual-e5 embeddings, and engineered so the knowledge base is swappable &mdash; point it at a different corpus and the same pipeline becomes a teacher, doctor, or anything else.</p>
+          <h3 class="work-title">Japanese Lawyer LLM</h3>
+          <p class="work-desc">A RAG application that answers legal questions in Japanese using the full corpus of Japanese law as its knowledge base. Built on <em>ELYZA-Japanese-LLaMA-2-7B</em> with multilingual-e5 embeddings, and engineered so the knowledge base is swappable &mdash; point it at a different corpus and the same pipeline becomes a teacher, doctor, or anything else.</p>
           <div class="work-stack">
             <span>LangChain</span><span>ELYZA-Japanese-LLaMA-2-7B</span><span>FAISS</span><span>multilingual-e5</span><span>Flask</span>
           </div>
-          <a class="work-link" href="https://github.com/Hujaifa-Git/Japanese-Lawyer-using-Langchain-and-LLM" target="_blank" rel="noopener" data-ja-html='GitHubで見る
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>'>
+          <a class="work-link" href="https://github.com/Hujaifa-Git/Japanese-Lawyer-using-Langchain-and-LLM" target="_blank" rel="noopener">
             View on GitHub
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
           </a>
@@ -1818,11 +1776,11 @@ footer {
               <div class="work-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
               </div>
-              <div class="work-overlay-title" data-ja="エージェント混合モデル">Mixture of Agents</div>
+              <div class="work-overlay-title">Mixture of Agents</div>
               <div class="work-tags">
-                <span class="work-tag" data-ja="マルチLLM">Multi-LLM</span>
-                <span class="work-tag" data-ja="階層型">Layered</span>
-                <span class="work-tag" data-ja="7Bモデル">7B Models</span>
+                <span class="work-tag">Multi-LLM</span>
+                <span class="work-tag">Layered</span>
+                <span class="work-tag">7B Models</span>
               </div>
             </div>
           </div>
@@ -1830,14 +1788,13 @@ footer {
           <img src="images/LLM-Mixture-of-Agents.png" alt="LLM Mixture of Agents" />
         </div>
         <div class="work-info">
-          <div class="work-eyebrow"><span class="num">03 ·</span> <span data-ja="アーキテクチャ">Architecture</span></div>
-          <h3 class="work-title" data-ja="LLMエージェント混合モデル">LLM Mixture of Agents</h3>
-          <p class="work-desc" data-ja-html='小型のオープンソースモデルのみを使ってGPT-4クラスの品質に迫る、階層型のマルチLLMパイプライン。第1層の<em>プロポーザー</em>が候補回答を生成し、後続の<em>アグリゲーター</em>層がそれらを統合・批評・洗練します。70BパラメータのMoA論文に着想を得つつ、A100を借りる余裕がない環境向けに設計されています。'>A layered multi-LLM pipeline that approaches GPT-4-class quality using only small open-source models. Layer-1 <em>proposers</em> generate candidate answers; subsequent <em>aggregator</em> layers synthesize, critique, and refine. Inspired by the 70B-parameter MoA paper, but engineered for setups where renting an A100 isn't an option.</p>
+          <div class="work-eyebrow"><span class="num">03 ·</span> Architecture</div>
+          <h3 class="work-title">LLM Mixture of Agents</h3>
+          <p class="work-desc">A layered multi-LLM pipeline that approaches GPT-4-class quality using only small open-source models. Layer-1 <em>proposers</em> generate candidate answers; subsequent <em>aggregator</em> layers synthesize, critique, and refine. Inspired by the 70B-parameter MoA paper, but engineered for setups where renting an A100 isn't an option.</p>
           <div class="work-stack">
             <span>PyTorch</span><span>HuggingFace</span><span>Qwen2</span><span>Phi-3</span><span>OpenHermes-Mistral</span>
           </div>
-          <a class="work-link" href="https://github.com/Hujaifa-Git/LLM-Mixture-of-Agents" target="_blank" rel="noopener" data-ja-html='GitHubで見る
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>'>
+          <a class="work-link" href="https://github.com/Hujaifa-Git/LLM-Mixture-of-Agents" target="_blank" rel="noopener">
             View on GitHub
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
           </a>
@@ -1856,8 +1813,8 @@ footer {
               <div class="work-overlay-title">AudioScribe</div>
               <div class="work-tags">
                 <span class="work-tag">Whisper</span>
-                <span class="work-tag" data-ja="99言語以上">99+ Languages</span>
-                <span class="work-tag" data-ja="リアルタイム同期">Real-time Sync</span>
+                <span class="work-tag">99+ Languages</span>
+                <span class="work-tag">Real-time Sync</span>
               </div>
             </div>
           </div>
@@ -1865,14 +1822,13 @@ footer {
           <img src="images/audioscribe.png" alt="AudioScribe" />
         </div>
         <div class="work-info">
-          <div class="work-eyebrow"><span class="num">04 ·</span> <span data-ja="プロダクト">Product</span></div>
+          <div class="work-eyebrow"><span class="num">04 ·</span> Product</div>
           <h3 class="work-title">AudioScribe</h3>
-          <p class="work-desc" data-ja="OpenAI Whisperを基盤とした洗練された音声書き起こしWebアプリ。99以上の言語に対応し、再生中にテキストがリアルタイムでハイライト同期されます。テキストセグメントをクリックすると、そのポイントから音声を再生可能。日本語学習者やジャーナリスト向けに特化して設計。CPU最適化済み、CUDAアクセラレーションにも対応。">A polished audio-transcription web app built on OpenAI Whisper, supporting 99+ languages with synchronized text highlighting during playback. Click any text segment to jump to that point in the audio. Designed especially for Japanese language learners and journalists. CPU-optimized with optional CUDA acceleration.</p>
+          <p class="work-desc">A polished audio-transcription web app built on OpenAI Whisper, supporting 99+ languages with synchronized text highlighting during playback. Click any text segment to jump to that point in the audio. Designed especially for Japanese language learners and journalists. CPU-optimized with optional CUDA acceleration.</p>
           <div class="work-stack">
             <span>FastAPI</span><span>Whisper</span><span>PyTorch</span><span>SQLite</span><span>Vanilla JS</span><span>FFmpeg</span>
           </div>
-          <a class="work-link" href="https://github.com/Hujaifa-Git/audioscribe" target="_blank" rel="noopener" data-ja-html='GitHubで見る
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>'>
+          <a class="work-link" href="https://github.com/Hujaifa-Git/audioscribe" target="_blank" rel="noopener">
             View on GitHub
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
           </a>
@@ -1888,7 +1844,7 @@ footer {
               <div class="work-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
               </div>
-              <div class="work-overlay-title" data-ja="日本語LLMファインチューニング">Japanese LLM Fine-tuning</div>
+              <div class="work-overlay-title">Japanese LLM Fine-tuning</div>
               <div class="work-tags">
                 <span class="work-tag">LoRA</span>
                 <span class="work-tag">日本語</span>
@@ -1900,14 +1856,13 @@ footer {
           <img src="images/LLM-Finetune-on-Custom-Dataset-Japanese.gif" alt="Japanese LLM Fine-tuning demo" />
         </div>
         <div class="work-info">
-          <div class="work-eyebrow"><span class="num">05 ·</span> <span data-ja="ファインチューニング">Fine-tuning</span> &middot; 日本語</div>
-          <h3 class="work-title" data-ja="日本語LLMファインチューニング">Japanese LLM Fine-tuning</h3>
-          <p class="work-desc" data-ja-html='日本語アルパカデータセットで<em>Open-Calm-7B</em>をLoRAファインチューニングし、日本語での指示追従を実現。PEFTを用いたメモリ効率の良い学習パイプラインで、汎用LLMが性能を発揮しにくい日本語特有のタスクで出力品質を評価。'>LoRA fine-tuning of <em>Open-Calm-7B</em> on the Japanese Alpaca dataset for instruction-following in Japanese. Memory-efficient training pipeline with PEFT, evaluating output quality on Japanese-specific tasks where general-purpose LLMs typically underperform.</p>
+          <div class="work-eyebrow"><span class="num">05 ·</span> Fine-tuning &middot; 日本語</div>
+          <h3 class="work-title">Japanese LLM Fine-tuning</h3>
+          <p class="work-desc">LoRA fine-tuning of <em>Open-Calm-7B</em> on the Japanese Alpaca dataset for instruction-following in Japanese. Memory-efficient training pipeline with PEFT, evaluating output quality on Japanese-specific tasks where general-purpose LLMs typically underperform.</p>
           <div class="work-stack">
             <span>LoRA</span><span>PEFT</span><span>Open-Calm-7B</span><span>HuggingFace</span><span>Japanese Alpaca</span>
           </div>
-          <a class="work-link" href="https://github.com/Hujaifa-Git/LLM-Finetune-on-Custom-Dataset-Japanese" target="_blank" rel="noopener" data-ja-html='GitHubで見る
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>'>
+          <a class="work-link" href="https://github.com/Hujaifa-Git/LLM-Finetune-on-Custom-Dataset-Japanese" target="_blank" rel="noopener">
             View on GitHub
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
           </a>
@@ -1923,11 +1878,11 @@ footer {
               <div class="work-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg>
               </div>
-              <div class="work-overlay-title" data-ja="CSV/Web検索">CSV-or-Web Search</div>
+              <div class="work-overlay-title">CSV-or-Web Search</div>
               <div class="work-tags">
-                <span class="work-tag" data-ja="ハイブリッドRAG">Hybrid RAG</span>
+                <span class="work-tag">Hybrid RAG</span>
                 <span class="work-tag">日本語</span>
-                <span class="work-tag" data-ja="ルーティング">Routing</span>
+                <span class="work-tag">Routing</span>
               </div>
             </div>
           </div>
@@ -1935,14 +1890,13 @@ footer {
           <img src="images/Japanese-LLM-CSVRetrival-or-WebSearch.gif" alt="Japanese CSV/Web Search demo" />
         </div>
         <div class="work-info">
-          <div class="work-eyebrow"><span class="num">06 ·</span> <span data-ja="ハイブリッドRAG">Hybrid RAG</span> &middot; 日本語</div>
-          <h3 class="work-title" data-ja="日本語CSV/Web検索">Japanese CSV-or-Web Search</h3>
-          <p class="work-desc" data-ja-html='ユーザーのクエリをローカルCSVベースのRAGストアとSerpAPI経由のライブWeb検索の間でルーティングする、日本語対応のハイブリッド検索システム。ルーターがクエリごとに、答えが構造化コーパス内にあるか、Webからの最新情報が必要かを判断します。'>Hybrid retrieval system that routes user queries between a local CSV-backed RAG store and live web search via SerpAPI &mdash; in Japanese. The router decides per-query whether the answer lives in the structured corpus or needs fresh information from the web.</p>
+          <div class="work-eyebrow"><span class="num">06 ·</span> Hybrid RAG &middot; 日本語</div>
+          <h3 class="work-title">Japanese CSV-or-Web Search</h3>
+          <p class="work-desc">Hybrid retrieval system that routes user queries between a local CSV-backed RAG store and live web search via SerpAPI &mdash; in Japanese. The router decides per-query whether the answer lives in the structured corpus or needs fresh information from the web.</p>
           <div class="work-stack">
             <span>LangChain</span><span>ELYZA</span><span>SerpAPI</span><span>FAISS</span><span>Routing</span>
           </div>
-          <a class="work-link" href="https://github.com/Hujaifa-Git/Japanese-LLM-CSVRetrival-or-WebSearch" target="_blank" rel="noopener" data-ja-html='GitHubで見る
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>'>
+          <a class="work-link" href="https://github.com/Hujaifa-Git/Japanese-LLM-CSVRetrival-or-WebSearch" target="_blank" rel="noopener">
             View on GitHub
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
           </a>
@@ -1958,11 +1912,11 @@ footer {
               <div class="work-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
               </div>
-              <div class="work-overlay-title" data-ja="全データ型対応RAG">RAG on Every Datatype</div>
+              <div class="work-overlay-title">RAG on Every Datatype</div>
               <div class="work-tags">
-                <span class="work-tag" data-ja="7形式">7 Formats</span>
+                <span class="work-tag">7 Formats</span>
                 <span class="work-tag">LangChain</span>
-                <span class="work-tag" data-ja="リファレンス">Reference</span>
+                <span class="work-tag">Reference</span>
               </div>
             </div>
           </div>
@@ -1970,14 +1924,13 @@ footer {
           <img src="images/RAG-on-Every-Datatype-using-Langchain.png" alt="RAG on Every Datatype" />
         </div>
         <div class="work-info">
-          <div class="work-eyebrow"><span class="num">07 ·</span> RAG &middot; <span data-ja="リファレンス">Reference</span></div>
-          <h3 class="work-title" data-ja="全データ型対応RAG">RAG on Every Datatype</h3>
-          <p class="work-desc" data-ja="プレーンテキスト、PDF、HTML、Markdown、JSON、CSV、ディレクトリ全体に対応した7種類のRAGパイプライン &mdash; LangChainで構築。RAGを始める人が自分のデータに合ったパターンをコピーして適応できるよう、リファレンスリポジトリとして設計されています。">Seven RAG pipelines for plain text, PDF, HTML, Markdown, JSON, CSV, and entire directories &mdash; built with LangChain. Designed as a reference repository so anyone starting with RAG can copy a pattern that matches their data and adapt from there.</p>
+          <div class="work-eyebrow"><span class="num">07 ·</span> RAG &middot; Reference</div>
+          <h3 class="work-title">RAG on Every Datatype</h3>
+          <p class="work-desc">Seven RAG pipelines for plain text, PDF, HTML, Markdown, JSON, CSV, and entire directories &mdash; built with LangChain. Designed as a reference repository so anyone starting with RAG can copy a pattern that matches their data and adapt from there.</p>
           <div class="work-stack">
             <span>LangChain</span><span>FAISS</span><span>Multi-format</span><span>PyPDF</span><span>BeautifulSoup</span>
           </div>
-          <a class="work-link" href="https://github.com/Hujaifa-Git/RAG-on-Every-Datatype-using-Langchain" target="_blank" rel="noopener" data-ja-html='GitHubで見る
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>'>
+          <a class="work-link" href="https://github.com/Hujaifa-Git/RAG-on-Every-Datatype-using-Langchain" target="_blank" rel="noopener">
             View on GitHub
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
           </a>
@@ -1993,10 +1946,10 @@ footer {
               <div class="work-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
               </div>
-              <div class="work-overlay-title" data-ja="履歴書分類">Resume Classification</div>
+              <div class="work-overlay-title">Resume Classification</div>
               <div class="work-tags">
                 <span class="work-tag">BERT</span>
-                <span class="work-tag" data-ja="24クラス">24 Classes</span>
+                <span class="work-tag">24 Classes</span>
                 <span class="work-tag">Belt-NLP</span>
               </div>
             </div>
@@ -2005,14 +1958,13 @@ footer {
           <img src="images/Resume-Classification.png" alt="Resume Classification" />
         </div>
         <div class="work-info">
-          <div class="work-eyebrow"><span class="num">08 ·</span> <span data-ja="分類">Classification</span></div>
-          <h3 class="work-title" data-ja="履歴書分類">Resume Classification</h3>
-          <p class="work-desc" data-ja-html='24カテゴリの履歴書分類向けにBERTをファインチューニングし、モデルのコンテキスト長を超える長文を扱うために<em>Belt-NLP</em>のチャンキングと組み合わせています。実世界の文書処理に焦点を当てた実践的な応用NLPプロジェクトです。'>BERT fine-tuned for 24-category resume classification, paired with <em>Belt-NLP</em> chunking to handle long documents that exceed the model's context length. Practical applied-NLP work focused on real-world document processing.</p>
+          <div class="work-eyebrow"><span class="num">08 ·</span> Classification</div>
+          <h3 class="work-title">Resume Classification</h3>
+          <p class="work-desc">BERT fine-tuned for 24-category resume classification, paired with <em>Belt-NLP</em> chunking to handle long documents that exceed the model's context length. Practical applied-NLP work focused on real-world document processing.</p>
           <div class="work-stack">
             <span>BERT</span><span>Belt-NLP</span><span>HuggingFace</span><span>PyTorch</span>
           </div>
-          <a class="work-link" href="https://github.com/Hujaifa-Git/Resume-Classification" target="_blank" rel="noopener" data-ja-html='GitHubで見る
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>'>
+          <a class="work-link" href="https://github.com/Hujaifa-Git/Resume-Classification" target="_blank" rel="noopener">
             View on GitHub
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
           </a>
@@ -2028,10 +1980,10 @@ footer {
               <div class="work-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               </div>
-              <div class="work-overlay-title" data-ja="農業チャットボット">Agricultural Chatbot</div>
+              <div class="work-overlay-title">Agricultural Chatbot</div>
               <div class="work-tags">
-                <span class="work-tag" data-ja="音声 + テキスト">Voice + Text</span>
-                <span class="work-tag" data-ja="ドメイン特化">Domain-Specific</span>
+                <span class="work-tag">Voice + Text</span>
+                <span class="work-tag">Domain-Specific</span>
                 <span class="work-tag">OpenAI</span>
               </div>
             </div>
@@ -2040,14 +1992,13 @@ footer {
           <img src="images/Agricultural-Chatbot-LLM.png" alt="Agricultural Chatbot LLM" />
         </div>
         <div class="work-info">
-          <div class="work-eyebrow"><span class="num">09 ·</span> <span data-ja="チャットボット">Chatbot</span></div>
-          <h3 class="work-title" data-ja="農業チャットボット">Agricultural Chatbot</h3>
-          <p class="work-desc" data-ja="農業に特化したドメイン特化型チャットボットで、テキストと音声の両方のインタラクションをサポート。OpenAIとHuggingFaceのAPIを組み合わせて農家との自然な会話を実現し、作物、天気、ベストプラクティスの情報を使いやすいUIで提供します。">Domain-specific chatbot for agriculture supporting both text and voice interactions. Blends OpenAI and HuggingFace APIs for natural conversation with farmers, surfacing crop, weather, and best-practice information through a friendly UI.</p>
+          <div class="work-eyebrow"><span class="num">09 ·</span> Chatbot</div>
+          <h3 class="work-title">Agricultural Chatbot</h3>
+          <p class="work-desc">Domain-specific chatbot for agriculture supporting both text and voice interactions. Blends OpenAI and HuggingFace APIs for natural conversation with farmers, surfacing crop, weather, and best-practice information through a friendly UI.</p>
           <div class="work-stack">
             <span>OpenAI</span><span>HuggingFace</span><span>Speech-to-Text</span><span>Python</span>
           </div>
-          <a class="work-link" href="https://github.com/Hujaifa-Git/Agricultural-Chatbot-LLM" target="_blank" rel="noopener" data-ja-html='GitHubで見る
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>'>
+          <a class="work-link" href="https://github.com/Hujaifa-Git/Agricultural-Chatbot-LLM" target="_blank" rel="noopener">
             View on GitHub
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
           </a>
@@ -2063,25 +2014,24 @@ footer {
               <div class="work-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
               </div>
-              <div class="work-overlay-title" data-ja="ファイル管理エージェント">File Management Agent</div>
+              <div class="work-overlay-title">File Management Agent</div>
               <div class="work-tags">
                 <span class="work-tag">GPT-4o</span>
-                <span class="work-tag" data-ja="ツール利用">Tool Use</span>
-                <span class="work-tag" data-ja="サンドボックス化">Sandboxed</span>
+                <span class="work-tag">Tool Use</span>
+                <span class="work-tag">Sandboxed</span>
               </div>
             </div>
           </div>
           <!-- <img src="images/projects/file-agent.png" alt="File Management Agent" /> -->
         </div>
         <div class="work-info">
-          <div class="work-eyebrow"><span class="num">10 ·</span> <span data-ja="ツール利用">Tool Use</span></div>
-          <h3 class="work-title" data-ja="ファイル管理エージェント">File Management Agent</h3>
-          <p class="work-desc" data-ja="GPT-4oを搭載したインテリジェントなファイル管理エージェント。txt、md、csv、json、pdf、docxなど複数形式のファイルを探索、読み取り、検索、解析する6つのツールを備えています。すべての操作はサンドボックス化された安全なディレクトリ内に限定され、リアルタイムのツール実行ログによりエージェントが何をなぜ実行しているかを正確に把握できます。">An intelligent file-management agent powered by GPT-4o, with 6 tools for exploring, reading, searching, and analyzing files across formats (txt, md, csv, json, pdf, docx). All operations are confined to a sandboxed safe directory, with real-time tool-execution logging so you can see exactly what the agent is doing and why.</p>
+          <div class="work-eyebrow"><span class="num">10 ·</span> Tool Use</div>
+          <h3 class="work-title">File Management Agent</h3>
+          <p class="work-desc">An intelligent file-management agent powered by GPT-4o, with 6 tools for exploring, reading, searching, and analyzing files across formats (txt, md, csv, json, pdf, docx). All operations are confined to a sandboxed safe directory, with real-time tool-execution logging so you can see exactly what the agent is doing and why.</p>
           <div class="work-stack">
             <span>OpenAI GPT-4o</span><span>Function Calling</span><span>PyPDF</span><span>python-docx</span><span>Sandboxing</span>
           </div>
-          <a class="work-link" href="https://github.com/Hujaifa-Git/File-Management-Agent-OpenAI" target="_blank" rel="noopener" data-ja-html='GitHubで見る
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>'>
+          <a class="work-link" href="https://github.com/Hujaifa-Git/File-Management-Agent-OpenAI" target="_blank" rel="noopener">
             View on GitHub
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
           </a>
@@ -2097,7 +2047,7 @@ footer {
               <div class="work-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
               </div>
-              <div class="work-overlay-title" data-ja="ドメイン適応プリトレーニング">Domain-Adaptive Pretraining</div>
+              <div class="work-overlay-title">Domain-Adaptive Pretraining</div>
               <div class="work-tags">
                 <span class="work-tag">LoRA</span>
                 <span class="work-tag">DeepSpeed</span>
@@ -2108,14 +2058,13 @@ footer {
           <!-- <img src="images/projects/domain-pretraining.png" alt="Domain-Adaptive Pretraining" /> -->
         </div>
         <div class="work-info">
-          <div class="work-eyebrow"><span class="num">11 ·</span> <span data-ja="プリトレーニング">Pretraining</span></div>
-          <h3 class="work-title" data-ja="ドメイン適応プリトレーニング">Domain-Adaptive Pretraining</h3>
-          <p class="work-desc" data-ja-html='<em>LLaMA</em>および<em>Mistral</em>モデル向けの継続的プリトレーニングパイプライン。メモリ効率の良い学習のためにLoRAとDeepSpeedを使用。汎用基盤モデルを、ゼロからのプリトレーニングの全コストをかけずに専門領域に適応させます。'>Continual pretraining pipeline for <em>LLaMA</em> and <em>Mistral</em> models using LoRA and DeepSpeed for memory-efficient training. Adapts general-purpose foundation models to specialized domains without the full cost of pretraining from scratch.</p>
+          <div class="work-eyebrow"><span class="num">11 ·</span> Pretraining</div>
+          <h3 class="work-title">Domain-Adaptive Pretraining</h3>
+          <p class="work-desc">Continual pretraining pipeline for <em>LLaMA</em> and <em>Mistral</em> models using LoRA and DeepSpeed for memory-efficient training. Adapts general-purpose foundation models to specialized domains without the full cost of pretraining from scratch.</p>
           <div class="work-stack">
             <span>LoRA</span><span>DeepSpeed</span><span>LLaMA</span><span>Mistral</span><span>PyTorch</span>
           </div>
-          <a class="work-link" href="https://github.com/Hujaifa-Git/LLM-Domain-Adaptive-Pretraining-using-LORA" target="_blank" rel="noopener" data-ja-html='GitHubで見る
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>'>
+          <a class="work-link" href="https://github.com/Hujaifa-Git/LLM-Domain-Adaptive-Pretraining-using-LORA" target="_blank" rel="noopener">
             View on GitHub
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
           </a>
@@ -2124,8 +2073,7 @@ footer {
 
       </div>
 
-    <div class="work-more reveal" data-ja-html='その他のプロジェクトは
-      <a href="https://github.com/Hujaifa-Git" target="_blank" rel="noopener">私のGitHub →</a>でご覧いただけます'>
+    <div class="work-more reveal">
       There are a lot more projects on
       <a href="https://github.com/Hujaifa-Git" target="_blank" rel="noopener">my GitHub →</a>
     </div>
@@ -2138,10 +2086,10 @@ footer {
     <div class="section-header reveal">
       <div class="section-num">
         <span class="line"></span>
-        <span data-ja="04 / 研究">04 / Research</span>
+        <span>04 / Research</span>
         <span class="jp">— 研究</span>
       </div>
-      <h2 class="section-title" data-ja-html='<em>生成モデル</em>と自律的なLLMツール構築に関する研究。'>Research work on <em>generative models</em> and autonomous LLM tooling.</h2>
+      <h2 class="section-title">Research work on <em>generative models</em> and autonomous LLM tooling.</h2>
     </div>
 
     <div class="pub-grid">
@@ -2152,7 +2100,7 @@ footer {
           <div class="pub-fallback">
             <span class="pub-kanji">環</span>
             <div class="pub-overlay">
-              <div class="pub-overlay-label" data-ja="パイプライン図">Pipeline Figure</div>
+              <div class="pub-overlay-label">Pipeline Figure</div>
               <div class="pub-overlay-caption">SOSE 2025</div>
             </div>
           </div>
@@ -2164,9 +2112,8 @@ footer {
             <div class="pub-year">2025</div>
             <div class="pub-venue">SOSE 2025 &middot; arXiv:2503.10071</div>
           </div>
-          <h3 class="pub-title" data-ja-html='高度なツール学習・選択システム <em>(ATLASS)</em> &mdash; LLMを用いたクローズドループフレームワーク'>Advanced Tool Learning and Selection System <em>(ATLASS)</em> &mdash; A Closed-Loop Framework Using LLM</h3>
-          <span class="pub-link" data-ja-html='論文を読む
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>'>
+          <h3 class="pub-title">Advanced Tool Learning and Selection System <em>(ATLASS)</em> &mdash; A Closed-Loop Framework Using LLM</h3>
+          <span class="pub-link">
             Read paper
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
           </span>
@@ -2179,7 +2126,7 @@ footer {
           <div class="pub-fallback">
             <span class="pub-kanji">織</span>
             <div class="pub-overlay">
-              <div class="pub-overlay-label" data-ja="パイプライン図">Pipeline Figure</div>
+              <div class="pub-overlay-label">Pipeline Figure</div>
               <div class="pub-overlay-caption">ICIEV-IVPR 2023</div>
             </div>
           </div>
@@ -2191,9 +2138,8 @@ footer {
             <div class="pub-year">2023</div>
             <div class="pub-venue">ICIEV-IVPR 2023 &middot; IJCVSP</div>
           </div>
-          <h3 class="pub-title" data-ja-html='自動敵対的生成ネットワークを用いた<em>ジャムダニ模様</em>を持つ衣類アイテムの生成'>Generation of Clothing Items with <em>Jamdani Motif Elements</em> Using Automated Generative Adversarial Networks</h3>
-          <span class="pub-link" data-ja-html='論文を読む
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>'>
+          <h3 class="pub-title">Generation of Clothing Items with <em>Jamdani Motif Elements</em> Using Automated Generative Adversarial Networks</h3>
+          <span class="pub-link">
             Read paper
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
           </span>
@@ -2209,17 +2155,17 @@ footer {
     <div class="section-header reveal">
       <div class="section-num">
         <span class="line"></span>
-        <span data-ja="05 / 技術">05 / Skills</span>
+        <span>05 / Skills</span>
         <span class="jp">— 技術</span>
       </div>
-      <h2 class="section-title" data-ja-html='保有している<em>技術スキル</em>'>The <em>Technical Skills</em> I possess</h2>
+      <h2 class="section-title">The <em>Technical Skills</em> I possess</h2>
     </div>
 
     <div class="skills-grid">
       <div class="skill-block reveal">
         <span class="skill-num">01</span>
         <div class="skill-title">生成AI</div>
-        <h3 class="skill-title-en" data-ja="生成AI">Generative AI</h3>
+        <h3 class="skill-title-en">Generative AI</h3>
         <div class="skill-items">
           <span class="skill-item">Pretraining</span>
           <span class="skill-item">Fine-tuning</span>
@@ -2237,7 +2183,7 @@ footer {
       <div class="skill-block reveal" data-delay="100">
         <span class="skill-num">02</span>
         <div class="skill-title">枠組み</div>
-        <h3 class="skill-title-en" data-ja="フレームワーク">Frameworks</h3>
+        <h3 class="skill-title-en">Frameworks</h3>
         <div class="skill-items">
           <span class="skill-item">PyTorch</span>
           <span class="skill-item">TensorFlow</span>
@@ -2261,7 +2207,7 @@ footer {
       <div class="skill-block reveal" data-delay="200">
         <span class="skill-num">03</span>
         <div class="skill-title">機械学習</div>
-        <h3 class="skill-title-en" data-ja="機械学習技術">ML Techniques</h3>
+        <h3 class="skill-title-en">ML Techniques</h3>
         <div class="skill-items">
           <span class="skill-item">DNN</span>
           <span class="skill-item">CNN</span>
@@ -2280,7 +2226,7 @@ footer {
       <div class="skill-block reveal" data-delay="300">
         <span class="skill-num">04</span>
         <div class="skill-title">言語・基盤</div>
-        <h3 class="skill-title-en" data-ja="言語・インフラ">Languages &amp; Infrastructure</h3>
+        <h3 class="skill-title-en">Languages &amp; Infrastructure</h3>
         <div class="skill-items">
           <span class="skill-item">Python</span>
           <span class="skill-item">C++</span>
@@ -2310,50 +2256,50 @@ footer {
     <div class="section-header reveal">
       <div class="section-num">
         <span class="line"></span>
-        <span data-ja="06 / 経歴">06 / Background</span>
+        <span>06 / Background</span>
         <span class="jp">— 経歴</span>
       </div>
-      <h2 class="section-title" data-ja="学歴、資格、そして使用言語。">Education, certifications, and the languages I work in.</h2>
+      <h2 class="section-title">Education, certifications, and the languages I work in.</h2>
     </div>
 
     <div class="bg-grid">
       <div class="reveal">
         <div class="edu-card">
-          <h3 class="edu-degree" data-ja-html='<em>コンピュータサイエンス・工学</em>学士'>B.Sc. in <em>Computer Science &amp; Engineering</em></h3>
-          <div class="edu-school" data-ja="アーサヌラ理工科大学">Ahsanullah University of Science and Technology</div>
+          <h3 class="edu-degree">B.Sc. in <em>Computer Science &amp; Engineering</em></h3>
+          <div class="edu-school">Ahsanullah University of Science and Technology</div>
           <div class="edu-meta">
-            <div data-ja-html='卒業 <strong>2023年</strong>'>Graduated <strong>2023</strong></div>
-            <div data-ja-html='GPA <strong>3.82 / 4.00</strong>'>CGPA <strong>3.82 / 4.00</strong></div>
-            <div data-ja-html='<strong>学長賞</strong>受賞'>Dean's <strong>List of Honor</strong></div>
+            <div>Graduated <strong>2023</strong></div>
+            <div>CGPA <strong>3.82 / 4.00</strong></div>
+            <div>Dean's <strong>List of Honor</strong></div>
           </div>
         </div>
 
         <div class="cert-list">
-          <div class="cert-item" data-ja-html='JLPT N3 &mdash; 日本語能力試験 <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">日本語能力試験</span>'>JLPT N3 &mdash; Japanese Language Proficiency <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">日本語能力試験</span></div>
-          <div class="cert-item" data-ja-html='ディープラーニング専門講座 <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">Coursera</span>'>Deep Learning Specialization <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">Coursera</span></div>
-          <div class="cert-item" data-ja-html='LangGraph入門 <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">LangChain</span>'>Introduction to LangGraph <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">LangChain</span></div>
-          <div class="cert-item" data-ja-html='学長賞 <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">AUST</span>'>Dean's List of Honor <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">AUST</span></div>
-          <div class="cert-item" data-ja-html='LeetCode 250問以上 <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">Active</span>'>250+ Problems on LeetCode <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">Active</span></div>
-          <div class="cert-item" data-ja-html='運転免許 <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">Bangladesh</span>'>Driving License <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">Bangladesh</span></div>
-          <div class="cert-item" data-ja-html='国際運転免許証 (IDP) <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">Worldwide</span>'>International Driving Permit (IDP) <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">Worldwide</span></div>
+          <div class="cert-item">JLPT N3 &mdash; Japanese Language Proficiency <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">日本語能力試験</span></div>
+          <div class="cert-item">Deep Learning Specialization <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">Coursera</span></div>
+          <div class="cert-item">Introduction to LangGraph <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">LangChain</span></div>
+          <div class="cert-item">Dean's List of Honor <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">AUST</span></div>
+          <div class="cert-item">250+ Problems on LeetCode <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">Active</span></div>
+          <div class="cert-item">Driving License <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">Bangladesh</span></div>
+          <div class="cert-item">International Driving Permit (IDP) <span style="color:var(--ash);margin-left:auto;font-family:var(--mono);font-size:0.78rem;">Worldwide</span></div>
         </div>
       </div>
 
       <div class="reveal" data-delay="200">
         <div class="lang-list">
           <div class="lang-item" style="--level: 1;">
-            <div class="lang-name" data-ja-html='ベンガル語<span class="native">বাংলা · 母語</span>'>Bangla<span class="native">বাংলা · 母語</span></div>
-            <div class="lang-level" data-ja-html='母語<span class="sub">— ネイティブスピーカー</span>'>Native<span class="sub">— 母語話者</span></div>
+            <div class="lang-name">Bangla<span class="native">বাংলা · 母語</span></div>
+            <div class="lang-level">Native<span class="sub">— 母語話者</span></div>
             <div class="lang-bar"></div>
           </div>
           <div class="lang-item" style="--level: 0.95;">
-            <div class="lang-name" data-ja-html='英語<span class="native">英語 · 流暢</span>'>English<span class="native">英語 · Fluent</span></div>
-            <div class="lang-level" data-ja-html='完全な熟達<span class="sub">— ビジネスレベル</span>'>Full Proficiency<span class="sub">— Professional</span></div>
+            <div class="lang-name">English<span class="native">英語 · Fluent</span></div>
+            <div class="lang-level">Full Proficiency<span class="sub">— Professional</span></div>
             <div class="lang-bar"></div>
           </div>
           <div class="lang-item" style="--level: 0.65;">
-            <div class="lang-name" data-ja-html='日本語<span class="native">日本語 · JLPT N3</span>'>Japanese<span class="native">日本語 · JLPT N3</span></div>
-            <div class="lang-level" data-ja-html='上級会話レベル<span class="sub">— 日常会話を超え、ビジネスレベルに迫る</span>'>Upper-Conversational<span class="sub">— Beyond daily talk, approaching business</span></div>
+            <div class="lang-name">Japanese<span class="native">日本語 · JLPT N3</span></div>
+            <div class="lang-level">Upper-Conversational<span class="sub">— Beyond daily talk, approaching business</span></div>
             <div class="lang-bar"></div>
           </div>
         </div>
@@ -2366,9 +2312,9 @@ footer {
 <section id="contact">
   <div class="section-inner contact-inner">
     <div class="contact-header reveal">
-      <div class="contact-eyebrow" data-ja="出会い · ご連絡をお待ちしています">出会い · Let's connect</div>
-      <h1 class="contact-title" data-ja-html='一緒に<em>何か</em>を作りましょう。'>Let's build <em>something</em> together.</h1>
-      <p class="contact-sub" data-ja="日本を拠点とし、研究の素地と実運用の経験を活かせるAI関連の仕事を探しています。ぜひお気軽にご連絡ください &mdash; 以下のいずれかのチャンネルからお願いします。">
+      <div class="contact-eyebrow">出会い · Let's connect</div>
+      <h1 class="contact-title">Let's build <em>something</em> together.</h1>
+      <p class="contact-sub">
         Looking for a job related to AI with a Japan focus, strong research roots, and production experience. I'd love to hear from you &mdash; reach out via any of the channels below.
       </p>
     </div>
@@ -2378,19 +2324,19 @@ footer {
         <div class="contact-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </div>
-        <span class="contact-label" data-ja="メール · 電子メール">Email · 電子メール</span>
+        <span class="contact-label">Email · 電子メール</span>
         <span class="contact-value">hujaifaislam123@gmail.com</span>
         <div class="contact-arrow">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
         </div>
-        <span class="copy-toast" id="copyToast" data-ja="コピーしました">Copied</span>
+        <span class="copy-toast" id="copyToast">Copied</span>
       </a>
 
       <a href="https://www.linkedin.com/in/hujaifa-islam-a88891187/" target="_blank" rel="noopener" class="contact-card">
         <div class="contact-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         </div>
-        <span class="contact-label" data-ja="LinkedIn · 仕事">LinkedIn · 仕事</span>
+        <span class="contact-label">LinkedIn · 仕事</span>
         <span class="contact-value">/in/hujaifa-islam</span>
         <div class="contact-arrow">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
@@ -2401,7 +2347,7 @@ footer {
         <div class="contact-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
         </div>
-        <span class="contact-label" data-ja="GitHub · コード">GitHub · コード</span>
+        <span class="contact-label">GitHub · コード</span>
         <span class="contact-value">@Hujaifa-Git</span>
         <div class="contact-arrow">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
@@ -2412,7 +2358,7 @@ footer {
         <div class="contact-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         </div>
-        <span class="contact-label" data-ja="電話 · 電話番号">Phone · 電話</span>
+        <span class="contact-label">Phone · 電話</span>
         <span class="contact-value">+81 90-4052-5996</span>
         <div class="contact-arrow">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
@@ -2425,10 +2371,10 @@ footer {
 <footer>
   <div class="footer-inner">
     <div>
-      <span class="jp">© 2026</span> <span data-ja="イスラム・エムディ・フジャイファ">Islam Md Hujaifa</span>
+      <span class="jp">© 2026</span> Islam Md Hujaifa
     </div>
     <div>
-      <span class="jp">埼玉県川越市</span> <span class="heart">♦</span> <span data-ja="東京 · 川越">Tokyo · Kawagoe</span>
+      <span class="jp">埼玉県川越市</span> <span class="heart">♦</span> Tokyo · Kawagoe
     </div>
   </div>
 </footer>
@@ -2493,61 +2439,6 @@ emailCard.addEventListener('click', (e) => {
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 1600);
   }).catch(() => {});
-});
-
-// ===== Language Toggle (EN / JA) =====
-const LANG_KEY = 'portfolio_lang';
-const flagEN = document.getElementById('flagEN');
-const flagJP = document.getElementById('flagJP');
-const langToggle = document.getElementById('langToggle');
-
-// Cache the original English content on the very first run, then we can flip freely.
-// For elements with data-ja  -> swap textContent
-// For elements with data-ja-html -> swap innerHTML (preserves <strong>, <em>, <svg>, etc.)
-function cacheOriginals() {
-  document.querySelectorAll('[data-ja]').forEach(el => {
-    if (!el.hasAttribute('data-en')) {
-      el.setAttribute('data-en', el.textContent);
-    }
-  });
-  document.querySelectorAll('[data-ja-html]').forEach(el => {
-    if (!el.hasAttribute('data-en-html')) {
-      el.setAttribute('data-en-html', el.innerHTML);
-    }
-  });
-}
-
-function applyLang(lang) {
-  // Plain-text swaps
-  document.querySelectorAll('[data-ja]').forEach(el => {
-    const en = el.getAttribute('data-en');
-    const ja = el.getAttribute('data-ja');
-    el.textContent = (lang === 'ja') ? ja : en;
-  });
-  // Rich-HTML swaps
-  document.querySelectorAll('[data-ja-html]').forEach(el => {
-    const en = el.getAttribute('data-en-html');
-    const ja = el.getAttribute('data-ja-html');
-    el.innerHTML = (lang === 'ja') ? ja : en;
-  });
-  // Flag visual state
-  flagEN.classList.toggle('active', lang === 'en');
-  flagJP.classList.toggle('active', lang === 'ja');
-  // Update <html lang="..."> for accessibility / SEO
-  document.documentElement.setAttribute('lang', lang === 'ja' ? 'ja' : 'en');
-  // Persist
-  try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
-}
-
-cacheOriginals();
-const savedLang = (function () {
-  try { return localStorage.getItem(LANG_KEY); } catch (e) { return null; }
-})() || 'en';
-applyLang(savedLang);
-
-langToggle.addEventListener('click', () => {
-  const current = document.documentElement.getAttribute('lang') === 'ja' ? 'ja' : 'en';
-  applyLang(current === 'ja' ? 'en' : 'ja');
 });
 </script>
 
